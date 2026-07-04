@@ -18,22 +18,26 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#11151A;
-    --ink-soft:#181D23;
-    --panel:#1D2329;
+    --ink:#080b10;
+    --ink-soft:#121720;
+    --panel:#161d27;
     --line: rgba(245,243,238,0.10);
-    --line-strong: rgba(245,243,238,0.18);
-    --paper:#F5F3EE;
-    --paper-dim: rgba(245,243,238,0.62);
-    --paper-faint: rgba(245,243,238,0.48);
+    --line-strong: rgba(245,243,238,0.16);
+    --paper:#F7F3ED;
+    --paper-dim: rgba(247,243,237,0.72);
+    --paper-faint: rgba(247,243,237,0.58);
     --teal:#E8702A;
     --teal-soft: rgba(232,112,42,0.16);
     --green:#3fd68f;
     --radius:14px;
+    --shadow: 0 24px 80px rgba(0,0,0,0.28);
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{margin:0;background:var(--ink);color:var(--paper);font-family:'Inter',sans-serif;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;}
+  body{margin:0;position:relative;isolation:isolate;background:radial-gradient(circle at top left, rgba(232,112,42,0.16), transparent 28%),radial-gradient(circle at 85% 10%, rgba(255,255,255,0.05), transparent 24%),linear-gradient(135deg, var(--ink) 0%, #0d1218 100%);color:var(--paper);font-family:'Inter',sans-serif;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(120deg, rgba(255,255,255,0.025), transparent 40%, rgba(255,255,255,0.012));mix-blend-mode:screen;}
+  #background-canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.95;}
+  .site-shell{position:relative;z-index:1;}
   h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.15;margin:0 0 14px;}
   h1{font-size:clamp(30px,4.6vw,46px);}
   h2{font-size:clamp(22px,3vw,30px);}
@@ -49,9 +53,14 @@
   .logo .chip{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;background:#fff;border-radius:11px;flex-shrink:0;}
   .logo .chip img{width:29px;height:29px;object-fit:contain;}
   .logo .name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;color:var(--paper);letter-spacing:.02em;white-space:nowrap;}
-  .btn{display:inline-block;padding:12px 22px;border-radius:10px;font-weight:600;text-decoration:none;font-size:15px;}
-  .btn-primary{background:var(--teal);color:#161006;}
+  .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 22px;border-radius:10px;font-weight:600;text-decoration:none;font-size:15px;position:relative;isolation:isolate;overflow:hidden;transition:all .3s ease;}
+  .btn-primary{background:linear-gradient(135deg, #E8702A 0%, #D95F1A 100%);color:#161006;box-shadow:0 8px 24px rgba(232, 112, 42, 0.3);}
+  .btn-primary::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 30%, rgba(255, 200, 100, 0.4), transparent 60%);opacity:0;animation:shimmer-idle 3s ease-in-out infinite;pointer-events:none;border-radius:inherit;}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 48px rgba(232, 112, 42, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.2);background:linear-gradient(135deg, #FF8E45 0%, #E8702A 100%);}
+  .btn-primary:hover::after{animation:shimmer-hover 0.6s ease-in-out infinite;}
   .btn-ghost{border:1px solid var(--line-strong);color:var(--paper);}
+  @keyframes shimmer-idle{0%,100%{opacity:0;}50%{opacity:1;}}
+  @keyframes shimmer-hover{0%{opacity:0;}50%{opacity:1;}100%{opacity:0;}}
   .meta-row{display:flex;flex-wrap:wrap;gap:12px 26px;align-items:center;margin-top:22px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--paper-faint);}
   .meta-row a{color:var(--paper-dim);}
   .live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 6px rgba(63,214,143,.8);margin-right:6px;vertical-align:1px;}
@@ -127,7 +136,8 @@
 </style>
 </head>
 <body>
-
+<canvas id="background-canvas" aria-hidden="true"></canvas>
+<div class="site-shell">
 <div class="wrap">
   <div class="topbar">
     <a class="logo" href="index.html">
@@ -270,5 +280,77 @@
     });
   });
 </script>
+<script>
+  const canvas = document.getElementById('background-canvas');
+  const ctx = canvas.getContext('2d');
+  let beams = [];
+  let raf = 0;
+
+  function createBeam() {
+    const angle = -30 + Math.random() * 12;
+    return {
+      x: Math.random() * window.innerWidth * 1.4 - window.innerWidth * 0.2,
+      y: Math.random() * window.innerHeight * 1.4 - window.innerHeight * 0.2,
+      width: 32 + Math.random() * 70,
+      length: window.innerHeight * 2.4,
+      angle,
+      speed: 0.45 + Math.random() * 0.65,
+      opacity: 0.12 + Math.random() * 0.16,
+      hue: 190 + Math.random() * 70,
+      pulse: Math.random() * Math.PI * 2,
+      pulseSpeed: 0.02 + Math.random() * 0.03,
+    };
+  }
+
+  function resizeCanvas() {
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+    canvas.style.width = `${window.innerWidth}px`;
+    canvas.style.height = `${window.innerHeight}px`;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    beams = Array.from({ length: 24 }, createBeam);
+  }
+
+  function drawBeam(beam) {
+    ctx.save();
+    ctx.translate(beam.x, beam.y);
+    ctx.rotate((beam.angle * Math.PI) / 180);
+    const pulsingOpacity = beam.opacity * (0.82 + Math.sin(beam.pulse) * 0.18);
+    const gradient = ctx.createLinearGradient(0, 0, 0, beam.length);
+    gradient.addColorStop(0, `hsla(${beam.hue}, 85%, 68%, 0)`);
+    gradient.addColorStop(0.25, `hsla(${beam.hue}, 85%, 68%, ${pulsingOpacity * 0.5})`);
+    gradient.addColorStop(0.5, `hsla(${beam.hue}, 85%, 68%, ${pulsingOpacity})`);
+    gradient.addColorStop(0.75, `hsla(${beam.hue}, 85%, 68%, ${pulsingOpacity * 0.5})`);
+    gradient.addColorStop(1, `hsla(${beam.hue}, 85%, 68%, 0)`);
+    ctx.fillStyle = gradient;
+    ctx.filter = 'blur(28px)';
+    ctx.fillRect(-beam.width / 2, 0, beam.width, beam.length);
+    ctx.restore();
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    beams.forEach((beam, index) => {
+      beam.y -= beam.speed;
+      beam.pulse += beam.pulseSpeed;
+      if (beam.y + beam.length < -120) {
+        beams[index] = createBeam();
+      }
+      drawBeam(beam);
+    });
+    raf = requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('resize', () => {
+    cancelAnimationFrame(raf);
+    resizeCanvas();
+    animate();
+  });
+
+  resizeCanvas();
+  animate();
+</script>
+</div>
 </body>
 </html>
