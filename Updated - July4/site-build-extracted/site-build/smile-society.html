@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smile Society Case Study — Jomel Noriega, GoHighLevel Automation Specialist</title>
+<meta name="description" content="Inside a complete GoHighLevel build: a 5-stage pipeline and 9 published workflows that turn a dental clinic's visitors into booked consultations automatically. Real screenshots from the real account.">
+<link rel="icon" type="image/png" href="favicon.png">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://jomelnoriega.com/smile-society.html">
+<meta property="og:title" content="Smile Society Case Study — a complete GoHighLevel booking system">
+<meta property="og:description" content="5-stage pipeline, 9 published workflows, instant follow-up. Real screenshots from the real GHL account behind smilesociety.online.">
+<meta property="og:image" content="https://jomelnoriega.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#11151A;
+    --ink-soft:#181D23;
+    --panel:#1D2329;
+    --line: rgba(245,243,238,0.10);
+    --line-strong: rgba(245,243,238,0.18);
+    --paper:#F5F3EE;
+    --paper-dim: rgba(245,243,238,0.62);
+    --paper-faint: rgba(245,243,238,0.38);
+    --teal:#E8702A;
+    --teal-soft: rgba(232,112,42,0.16);
+    --green:#3fd68f;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--ink);color:var(--paper);font-family:'Inter',sans-serif;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.15;margin:0 0 14px;}
+  h1{font-size:clamp(30px,4.6vw,46px);}
+  h2{font-size:clamp(22px,3vw,30px);}
+  h3{font-size:18px;}
+  p{margin:0 0 14px;color:var(--paper-dim);}
+  a{color:var(--teal);}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 24px;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:14px;}
+  .section-pad{padding:64px 0;}
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid var(--line);}
+  .logo{display:inline-flex;align-items:center;gap:12px;text-decoration:none;}
+  .logo .chip{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;background:#fff;border-radius:11px;flex-shrink:0;}
+  .logo .chip img{width:29px;height:29px;object-fit:contain;}
+  .logo .name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;color:var(--paper);letter-spacing:.02em;white-space:nowrap;}
+  .btn{display:inline-block;padding:12px 22px;border-radius:10px;font-weight:600;text-decoration:none;font-size:15px;}
+  .btn-primary{background:var(--teal);color:#161006;}
+  .btn-ghost{border:1px solid var(--line-strong);color:var(--paper);}
+  .meta-row{display:flex;flex-wrap:wrap;gap:12px 26px;align-items:center;margin-top:22px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--paper-faint);}
+  .meta-row a{color:var(--paper-dim);}
+  .live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 6px rgba(63,214,143,.8);margin-right:6px;vertical-align:1px;}
+  .disclosure{background:var(--ink-soft);border:1px solid var(--line);border-left:3px solid var(--teal);border-radius:10px;padding:16px 20px;margin-top:30px;font-size:14.5px;color:var(--paper-dim);}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:34px;}
+  .stat{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px;}
+  .stat .num{font-family:'JetBrains Mono',monospace;font-size:28px;color:var(--teal);display:block;margin-bottom:6px;}
+  .stat .lbl{font-size:13.5px;color:var(--paper-faint);}
+  figure{margin:26px 0 8px;}
+  figure img{width:100%;height:auto;display:block;border-radius:10px;border:1px solid var(--line-strong);background:#fff;}
+  figcaption{font-size:13.5px;color:var(--paper-faint);margin-top:10px;font-family:'JetBrains Mono',monospace;letter-spacing:.02em;}
+  .stage-list{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:10px;}
+  .stage-list li{background:var(--ink-soft);border:1px solid var(--line);border-radius:10px;padding:12px 16px;font-size:14.5px;color:var(--paper-dim);}
+  .stage-list li b{color:var(--paper);font-weight:600;}
+  .wf-feature{margin-top:44px;}
+  .wf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:26px;}
+  .wf-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;}
+  .wf-card img{width:100%;height:220px;object-fit:cover;object-position:top;border-radius:8px;border:1px solid var(--line);background:#fff;}
+  .wf-card h3{font-size:15.5px;margin:12px 0 4px;}
+  .wf-card p{font-size:13.5px;margin:0;color:var(--paper-faint);}
+  .cta-band{background:var(--ink-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center;padding:56px 0;}
+  footer{padding:26px 0;text-align:center;font-size:13px;color:var(--paper-faint);}
+  @media (max-width:640px){ .topbar .btn{display:none;} }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="topbar">
+    <a class="logo" href="index.html">
+      <span class="chip"><img src="jn-monogram.png" alt="JN monogram"></span>
+      <span class="name">Jomel Noriega</span>
+    </a>
+    <div style="display:flex;gap:12px;align-items:center;">
+      <a href="index.html" style="font-size:14px;color:var(--paper-dim);text-decoration:none;">&larr; Back to portfolio</a>
+      <a href="index.html#contact" class="btn btn-primary">Book a free call</a>
+    </div>
+  </div>
+</div>
+
+<header class="section-pad">
+  <div class="wrap">
+    <span class="tag">Case study &middot; spec build</span>
+    <h1>Smile Society — a complete dental clinic booking system in GoHighLevel</h1>
+    <p style="max-width:720px;font-size:17.5px;">One job: turn a website visitor into a booked consultation, then make sure they actually show up — without anyone at the clinic touching a keyboard. Below is the entire system, shown from inside the real GHL account.</p>
+    <div class="meta-row">
+      <span><span class="live-dot"></span><a href="https://smilesociety.online" target="_blank" rel="noopener">smilesociety.online</a> — the live funnel</span>
+      <span><a href="https://links.smilesociety.online/widget/booking/pJ2ZJv8HN16FnOGJM2Vm" target="_blank" rel="noopener">Try the live booking calendar &rarr;</a></span>
+    </div>
+    <div class="disclosure">
+      <b style="color:var(--paper);">Honest framing:</b> this is a spec build — created to demonstrate the method, not a paid client engagement. Every screenshot on this page is from the real GoHighLevel account running smilesociety.online, and the booking calendar above is live: you can click through the whole experience yourself.
+    </div>
+    <div class="stats">
+      <div class="stat"><span class="num">5</span><span class="lbl">pipeline stages, from first form fill to accepted treatment plan</span></div>
+      <div class="stat"><span class="num">9</span><span class="lbl">published workflows running the follow-up automatically</span></div>
+      <div class="stat"><span class="num">&lt;60s</span><span class="lbl">from form submit to confirmation email with booking link</span></div>
+      <div class="stat"><span class="num">24/7</span><span class="lbl">missed-call text-back, with business-hours logic built in</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="section-pad" style="padding-top:20px;">
+  <div class="wrap">
+    <span class="tag">The problem this solves</span>
+    <h2>Clinics don't lose patients to competitors. They lose them to silence.</h2>
+    <p style="max-width:720px;">A local dental clinic's website usually describes services and hopes people call. Leads fill out a form and wait. Calls go unanswered during procedures. Nobody follows up on no-shows. Each of those moments is a patient quietly choosing another clinic. This build closes every one of those gaps with automation.</p>
+  </div>
+</section>
+
+<section class="section-pad" style="padding-top:0;">
+  <div class="wrap">
+    <span class="tag">The pipeline</span>
+    <h2>Five stages. Every lead visible, nothing in anyone's head.</h2>
+    <p style="max-width:720px;">The pipeline mirrors how a clinic actually works — and every stage change fires its own automation, so moving a card <i>is</i> the work.</p>
+    <figure>
+      <img src="case-assets/ss-pipeline.png" alt="GoHighLevel Opportunities view showing the five-stage Smile Society sales pipeline: New Lead, Booked, Showed Up, Treatment Confirmation Sent, and Treatment Plan Accepted (Won), with a test opportunity card in the Treatment Confirmation Sent stage">
+      <figcaption>The V2 Smile Society pipeline inside GoHighLevel. The card shown is test data.</figcaption>
+    </figure>
+    <ul class="stage-list">
+      <li><b>New Lead</b> — form submitted; instant confirmation email with booking link, 1-hour reminder if they haven't booked.</li>
+      <li><b>Booked</b> — appointment confirmed; day-before and morning-of SMS + email reminders fire automatically.</li>
+      <li><b>Showed Up</b> — thank-you email, patient tagging, and treatment-need routing kick in.</li>
+      <li><b>Treatment Confirmation Sent</b> — multi-day confirmation sequence with timeout branches if they go quiet.</li>
+      <li><b>Treatment Plan Accepted (Won)</b> — internal handoff tasks plus an automated review request a day later.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section-pad" style="padding-top:0;">
+  <div class="wrap">
+    <span class="tag">The workflows</span>
+    <h2>Nine published workflows. This is the engine room.</h2>
+    <figure>
+      <img src="case-assets/ss-workflows-list.png" alt="GoHighLevel workflows list showing nine Smile Society workflows, every one with a green Published status badge">
+      <figcaption>All nine workflows, all Published — not drafts, not mockups.</figcaption>
+    </figure>
+
+    <div class="wf-feature">
+      <h3 style="font-size:20px;">Featured: 001 — New Lead speed-to-lead</h3>
+      <p style="max-width:720px;">The moment the intake form is submitted, the system checks whether this contact already exists, creates or updates the opportunity, tags them, notifies the clinic, and sends the confirmation email with the booking link — then waits one hour and nudges anyone who hasn't booked. The lead never sits untouched.</p>
+      <figure><img src="case-assets/ss-wf-001.png" alt="Workflow canvas for 001 New Lead Stage: form-submitted trigger branching through find-opportunity, update or create opportunity, tagging, internal notification, confirmation email with booking link, one-hour wait, and reminder branches"><figcaption>001 New Lead Stage — the full canvas.</figcaption></figure>
+    </div>
+
+    <div class="wf-feature">
+      <h3 style="font-size:20px;">Featured: 009 — Missed Call Text-Back</h3>
+      <p style="max-width:720px;">A missed call triggers an instant SMS — with different messages during and after business hours — then waits 30 minutes for a reply. If the lead replies, they're tagged engaged and sent the booking link; if not, the clinic gets an internal task to follow up. A ringing phone during a procedure stops costing patients.</p>
+      <figure><img src="case-assets/ss-wf-009.png" alt="Workflow canvas for 009 Missed Call Text Back: incoming missed-call trigger, business-hours condition, branch-specific SMS, 30-minute reply window, engaged tagging with booking link on reply, and internal follow-up task on timeout"><figcaption>009 Missed Call Text Back — business-hours logic on the left, after-hours on the right.</figcaption></figure>
+    </div>
+
+    <div class="wf-feature">
+      <h3 style="font-size:20px;">Featured: 002 — Booked-stage reminders</h3>
+      <p style="max-width:720px;">Booking an appointment enrolls the patient in a reminder ladder: instant confirmation, then SMS + email the day before, then SMS + email shortly before the visit. No-show prevention runs on rails instead of on the receptionist's memory.</p>
+      <figure><img src="case-assets/ss-wf-002.png" alt="Workflow canvas for 002 Booked Stage: appointment-booked trigger, opportunity update, tagging, confirmation email, then timed waits with day-before and pre-appointment SMS and email reminders"><figcaption>002 Booked Stage — the reminder ladder.</figcaption></figure>
+    </div>
+
+    <h3 style="font-size:20px;margin-top:44px;">The other six, at a glance</h3>
+    <div class="wf-grid">
+      <div class="wf-card"><img src="case-assets/ss-wf-003.png" alt="Workflow canvas for 003 Showed Up"><h3>003 — Showed Up</h3><p>Thank-you email, patient tagging, and needs-treatment routing after the visit.</p></div>
+      <div class="wf-card"><img src="case-assets/ss-wf-004.png" alt="Workflow canvas for 004 Treatment Confirmation Sent"><h3>004 — Treatment Confirmation Sent</h3><p>Multi-day confirmation sequence with condition and timeout branches for quiet patients.</p></div>
+      <div class="wf-card"><img src="case-assets/ss-wf-005.png" alt="Workflow canvas for 005 Treatment Plan Accepted"><h3>005 — Treatment Plan Accepted</h3><p>Tag swap, internal notification and task, then an automated review request a day later.</p></div>
+      <div class="wf-card"><img src="case-assets/ss-wf-006.png" alt="Workflow canvas for 006 No-Show Follow-up"><h3>006 — No-Show Follow-up</h3><p>Immediate rebooking SMS, then a "we missed you" email a day later. No-shows get rescued, not forgotten.</p></div>
+      <div class="wf-card"><img src="case-assets/ss-wf-007.png" alt="Workflow canvas for 007 Cancelled/Rescheduled"><h3>007 — Cancelled / Rescheduled</h3><p>Needs-reschedule tagging, SMS nudge, and an internal heads-up the moment plans change.</p></div>
+      <div class="wf-card"><img src="case-assets/ss-wf-008.png" alt="Workflow canvas for 008 Needs Treatment Tag"><h3>008 — Needs Treatment Tag</h3><p>Routes each appointment type to the right follow-up path with automatic tagging.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad" style="padding-top:0;">
+  <div class="wrap">
+    <span class="tag">Inside the messages</span>
+    <h2>The automation writes like a person, not a robot.</h2>
+    <p style="max-width:720px;">Every email and SMS in the system is written and personalized with contact fields — here's the confirmation email from workflow 001, exactly as it lives in the builder.</p>
+    <figure>
+      <img src="case-assets/ss-email-template.png" alt="GoHighLevel workflow builder showing the confirmation email editor: subject line 'Thank You for Choosing Smile Society!' and a personalized message using the contact first-name merge field">
+      <figcaption>The confirmation &amp; booking-link email, open in the builder with its personalization tokens.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="wrap">
+    <span class="tag">Want this for your business?</span>
+    <h2 style="max-width:640px;margin-left:auto;margin-right:auto;">Same method. Your pipeline, your follow-up, your patients — or customers.</h2>
+    <p style="max-width:560px;margin:0 auto 24px;">This structure adapts to any appointment-driven business: clinics, home services, agencies, coaches. We map yours on a free call.</p>
+    <a href="index.html#contact" class="btn btn-primary">Book a free call &rarr;</a>
+    <p style="margin-top:16px;font-size:13.5px;"><a href="https://links.smilesociety.online/widget/booking/pJ2ZJv8HN16FnOGJM2Vm" target="_blank" rel="noopener">Or test-drive the demo booking calendar first &rarr;</a></p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">© 2026 Jomel Noriega &middot; <a href="index.html" style="color:var(--paper-dim);">jomelnoriega.com</a></div>
+</footer>
+
+</body>
+</html>
