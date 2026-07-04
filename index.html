@@ -502,13 +502,17 @@
   }
   .case-block ul{margin:0; padding-left:18px;}
   .case-block li{margin-bottom:8px;}
+  .case-links{
+    display:flex; flex-wrap:wrap;
+    gap:8px 28px;
+    margin-top:6px;
+  }
   .case-link{
     display:inline-flex; align-items:center; gap:8px;
     color:var(--accent);
     text-decoration:none;
     font-weight:600;
     font-size:14.5px;
-    margin-top:6px;
   }
   .case-link svg{width:14px;height:14px;}
   .case-note{
@@ -640,6 +644,46 @@
   @media (max-width: 560px){
     .bio-head{flex-direction:column; align-items:flex-start;}
     .headshot{width:160px; height:160px;}
+  }
+
+  /* ===== Playbook ===== */
+  .section-tight{padding-top:0;}
+  .playbook-card{
+    background:var(--ink-soft);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:36px 32px;
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    gap:30px;
+    align-items:center;
+  }
+  .playbook-card h2{margin:8px 0 10px; font-size:clamp(20px, 2.6vw, 26px);}
+  .playbook-card .pb-sub{margin:0; color:var(--paper-dim); font-size:15px;}
+  .pb-form{display:flex; gap:10px; flex-wrap:wrap;}
+  .pb-form input{
+    flex:1; min-width:200px;
+    background:var(--panel);
+    border:1px solid var(--line-strong);
+    border-radius:10px;
+    padding:12px 14px;
+    color:var(--paper);
+    font-family:'Inter', sans-serif;
+    font-size:15px;
+  }
+  .pb-form input::placeholder{color:var(--paper-faint);}
+  .pb-form input:focus{outline:none; border-color:var(--accent);}
+  .pb-note{margin:10px 0 0; font-size:12.5px; color:var(--paper-faint);}
+  .pb-done-msg{margin:0 0 12px; color:var(--paper); font-weight:600;}
+  .sr-only{
+    position:absolute;
+    width:1px; height:1px;
+    overflow:hidden;
+    clip:rect(0 0 0 0);
+    white-space:nowrap;
+  }
+  @media (max-width: 700px){
+    .playbook-card{grid-template-columns:1fr;}
   }
 
   /* ===== Testimonials ===== */
@@ -1134,10 +1178,16 @@
             <span class="lbl">The result</span>
             <p>This is a spec build made to demonstrate the approach. On a live clinic, this structure is designed to convert cold traffic into booked consultations and cut no-shows through automated reminders.</p>
             <p class="case-note">Sample project — built to show the method, not a paid client result.</p>
-            <a class="case-link" href="https://smilesociety.online" target="_blank" rel="noopener">
-              See it live: smilesociety.online
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
-            </a>
+            <div class="case-links">
+              <a class="case-link" href="smile-society.html">
+                Read the full case study — every screen, every workflow
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+              <a class="case-link" href="https://smilesociety.online" target="_blank" rel="noopener">
+                See it live: smilesociety.online
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -1233,6 +1283,31 @@
           <span class="quote-mark" aria-hidden="true">&ldquo;</span>
           <p>Jomel is a hard worker, quick learner, and great communicator. Highly recommended!</p>
           <div class="who">— Anton D., Upwork Client</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PLAYBOOK ============ -->
+  <section class="section-pad section-tight" id="playbook">
+    <div class="wrap reveal">
+      <div class="playbook-card">
+        <div>
+          <span class="section-tag">// free playbook</span>
+          <h2>Not ready for a call? Take the playbook.</h2>
+          <p class="pb-sub">All nine workflows from this page in one PDF — the problem each one solves, how the automation works, and the step-by-step flow. Free, sent straight to your screen.</p>
+        </div>
+        <div id="pbCapture">
+          <form id="pbForm" class="pb-form">
+            <label for="pb-email" class="sr-only">Email</label>
+            <input type="email" id="pb-email" name="email" required autocomplete="email" placeholder="you@business.com">
+            <button type="submit" class="btn btn-primary">Get the guide <span class="arr" aria-hidden="true">→</span></button>
+          </form>
+          <p class="pb-note">No spam. One email, one PDF.</p>
+        </div>
+        <div id="pbDone" hidden>
+          <p class="pb-done-msg">Here it is — enjoy the playbook.</p>
+          <a href="nine-workflows-guide.pdf" class="btn btn-primary" download>Download the guide (PDF) <span class="arr" aria-hidden="true">→</span></a>
         </div>
       </div>
     </div>
@@ -1342,7 +1417,8 @@
         <h2 class="footer-h">Quick Links</h2>
         <a href="#how-it-works">How It Works</a>
         <a href="#workflows">Workflows</a>
-        <a href="#case-study">Case Study</a>
+        <a href="smile-society.html">Smile Society Case Study</a>
+        <a href="#playbook">Free Playbook</a>
         <a href="#faq">FAQs</a>
       </div>
       <div class="footer-col">
@@ -1464,6 +1540,23 @@
         formError.classList.add('visible');
         console.error('Form submission error:', err);
       }
+    });
+  }
+
+  // Playbook: capture email, then reveal the PDF download either way
+  const pbForm = document.getElementById('pbForm');
+  if(pbForm){
+    pbForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      const email = document.getElementById('pb-email').value;
+      fetch('https://formspree.io/f/xkolgege', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, source: 'nine-workflows-guide' })
+      }).finally(function(){
+        document.getElementById('pbCapture').hidden = true;
+        document.getElementById('pbDone').hidden = false;
+      });
     });
   }
 
