@@ -78,6 +78,47 @@
   .wf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:16px;margin-top:26px;}
   .wf-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;}
   .wf-card img{width:100%;height:auto;border-radius:8px;border:1px solid var(--line);background:#fff;}
+  /* click-to-expand window for the six-workflow grid */
+  .wf-shot{
+    display:block;
+    width:100%;
+    padding:0;
+    border:none;
+    background:none;
+    border-radius:8px;
+    cursor:zoom-in;
+    overflow:hidden;
+    position:relative;
+    max-height:260px;
+    transition:max-height .35s ease;
+  }
+  .wf-shot::after{
+    content:"⤢ Click to view the full workflow";
+    position:absolute;
+    left:1px; right:1px; bottom:1px;
+    padding:44px 0 10px;
+    text-align:center;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:#4b5560;
+    background:linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.94) 55%);
+    border-radius:0 0 8px 8px;
+    pointer-events:none;
+  }
+  .wf-shot.open{
+    max-height:1100px;
+    cursor:zoom-out;
+  }
+  .wf-shot.open::after{
+    content:"⤡ Collapse";
+    padding:26px 0 8px;
+  }
+  .wf-shot:focus-visible{outline:2px solid var(--teal); outline-offset:3px;}
+  @media (prefers-reduced-motion: reduce){
+    .wf-shot{transition:none;}
+  }
   .wf-card h3{font-size:15.5px;margin:12px 0 4px;}
   .wf-card p{font-size:13.5px;margin:0;color:var(--paper-faint);}
   .cta-band{background:var(--ink-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center;padding:56px 0;}
@@ -213,5 +254,21 @@
   <div class="wrap">© 2026 Jomel Noriega &middot; <a href="index.html" style="color:var(--paper-dim);">jomelnoriega.com</a></div>
 </footer>
 
+<script>
+  // Six-workflow grid: collapse each canvas into a fixed window, expand on click
+  document.querySelectorAll('.wf-grid .wf-card img').forEach(function(img){
+    var btn = document.createElement('button');
+    btn.className = 'wf-shot';
+    btn.type = 'button';
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-label', 'Expand full workflow screenshot');
+    img.parentNode.insertBefore(btn, img);
+    btn.appendChild(img);
+    btn.addEventListener('click', function(){
+      var open = btn.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+    });
+  });
+</script>
 </body>
 </html>
