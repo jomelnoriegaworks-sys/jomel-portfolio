@@ -47,6 +47,7 @@
     --slate:#8E99A4;
     --coral:#E07856;
     --radius: 14px;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -102,9 +103,15 @@
   /* ===== Nav ===== */
   header{
     position:sticky; top:0; z-index:50;
-    background:rgba(17,21,26,0.86);
+    background:rgba(17,21,26,0.55);
     backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
+    -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid transparent;
+    transition:background-color .25s ease, border-color .25s ease;
+  }
+  header.scrolled{
+    background:rgba(17,21,26,0.86);
+    border-bottom-color:var(--line);
   }
   .nav{
     display:flex; align-items:center; justify-content:space-between;
@@ -268,13 +275,11 @@
     background:var(--accent);
     color:#0B1210;
   }
-  .btn-primary:hover{transform:translateY(-1px); filter:brightness(1.06);}
   .btn-ghost{
     background:transparent;
     border-color:var(--line-strong);
     color:var(--paper);
   }
-  .btn-ghost:hover{border-color:var(--accent); color:var(--accent);}
 
   /* hero diagram strip */
   .hero-strip{
@@ -831,17 +836,82 @@
     color:var(--slate);
   }
 
-  /* reveal on scroll — only hidden when JS is available to reveal it */
-  .js .reveal{
-    opacity:0;
-    transform:translateY(16px);
-    transition:opacity .6s ease, transform .6s ease;
+  /* ===== Motion system =====
+     Every entrance animation lives behind BOTH the .js gate (content is never
+     hidden if scripts fail) and prefers-reduced-motion:no-preference.
+     Transform/opacity only, so everything stays on the compositor. */
+  @media (prefers-reduced-motion: no-preference){
+
+    @keyframes pageIn{from{opacity:0;}}
+    @keyframes rise{from{opacity:0; transform:translateY(12px);}}
+    @keyframes fadeIn{from{opacity:0;}}
+    @keyframes imgIn{from{opacity:0; transform:scale(1.04);}}
+
+    .js body{animation:pageIn .35s ease-out both;}
+
+    /* hero entrance — one staggered pass, each step < 0.6s */
+    .js .hero .eyebrow{animation:rise .5s var(--ease) .05s backwards;}
+    .js .hero h1{animation:rise .55s var(--ease) .12s backwards;}
+    .js .hero .sub{animation:rise .55s var(--ease) .2s backwards;}
+    .js .hero-ctas{animation:rise .55s var(--ease) .28s backwards;}
+    .js .hero-strip{animation:rise .55s var(--ease) .38s backwards;}
+
+    /* the hero workflow assembles itself, node by node */
+    .js .hero-strip svg g{animation:rise .45s var(--ease) backwards;}
+    .js .hero-strip svg g:nth-of-type(1){animation-delay:.55s;}
+    .js .hero-strip svg g:nth-of-type(2){animation-delay:.63s;}
+    .js .hero-strip svg g:nth-of-type(3){animation-delay:.71s;}
+    .js .hero-strip svg g:nth-of-type(4){animation-delay:.79s;}
+    .js .hero-strip svg g:nth-of-type(5){animation-delay:.87s;}
+    .js .hero-strip svg line{animation:fadeIn .35s ease backwards;}
+    .js .hero-strip svg line:nth-of-type(1){animation-delay:.6s;}
+    .js .hero-strip svg line:nth-of-type(2){animation-delay:.68s;}
+    .js .hero-strip svg line:nth-of-type(3){animation-delay:.76s;}
+    .js .hero-strip svg line:nth-of-type(4){animation-delay:.84s;}
+
+    /* reveal on scroll */
+    .js .reveal{
+      opacity:0;
+      transform:translateY(14px);
+      transition:opacity .55s var(--ease), transform .55s var(--ease);
+    }
+    .js .reveal.in{opacity:1; transform:none;}
+
+    /* staggered children inside a revealed section
+       (animation-fill: backwards only, so hover transforms work afterward) */
+    .js .reveal.in :is(.problem-item, .step, .testi, .diff-point){
+      animation:rise .5s var(--ease) backwards;
+    }
+    .js .reveal.in :is(.problem-item, .step, .testi, .diff-point):nth-child(2){animation-delay:.07s;}
+    .js .reveal.in :is(.problem-item, .step, .testi, .diff-point):nth-child(3){animation-delay:.14s;}
+    .js .reveal.in :is(.problem-item, .step, .testi, .diff-point):nth-child(4){animation-delay:.21s;}
+
+    /* image reveal */
+    .js .reveal.in .headshot{animation:imgIn .55s var(--ease) .1s backwards;}
+
+    /* workflow panel switch */
+    .js .wf-panel.active{animation:rise .3s var(--ease);}
   }
-  .js .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* hover micro-interactions — pointer devices only, so nothing sticks on touch */
+  @media (hover:hover) and (pointer:fine){
+    .btn-primary:hover{transform:translateY(-1px); filter:brightness(1.06);}
+    .btn-ghost:hover{border-color:var(--accent); color:var(--accent);}
+    .testi{transition:border-color .2s ease, transform .25s var(--ease);}
+    .testi:hover{border-color:var(--line-strong); transform:translateY(-2px);}
+    .problem-item{transition:background-color .2s ease;}
+    .problem-item:hover{background:#1B222A;}
+    .btn .arr{display:inline-block; transition:transform .2s var(--ease);}
+    .btn:hover .arr{transform:translateX(3px);}
+    .case-link svg{transition:transform .2s var(--ease);}
+    .case-link:hover svg{transform:translate(2px,-2px);}
+    .nav-cta{transition:filter .15s ease;}
+    .nav-cta:hover{filter:brightness(1.07);}
+  }
+  .btn:active{transform:translateY(0) scale(.99);}
 
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto;}
-    .js .reveal{opacity:1; transform:none; transition:none;}
     .eyebrow .dot{animation:none;}
     .menu-toggle .bar{transition:none;}
   }
@@ -891,7 +961,7 @@
       <h1>&ldquo;I&rsquo;ll Follow Up Later&rdquo;<br>Isn&rsquo;t a <span class="accent">Strategy.</span></h1>
       <p class="sub">I build the GoHighLevel automations, funnels, and CRM that follow up for you — so leads stop slipping while you're busy running everything else.</p>
       <div class="hero-ctas">
-        <a href="#contact" class="btn btn-primary">Book a free call →</a>
+        <a href="#contact" class="btn btn-primary">Book a free call <span class="arr" aria-hidden="true">→</span></a>
         <a href="#workflows" class="btn btn-ghost">See sample workflows</a>
       </div>
 
@@ -1237,7 +1307,7 @@
             <input type="text" id="cf-company" name="_gotcha" tabindex="-1" autocomplete="off">
           </div>
           <p class="form-error" id="formError" role="alert">Something went wrong sending your message. Please try again, or email me directly at <a href="mailto:hello@jomelnoriega.com">hello@jomelnoriega.com</a>.</p>
-          <button type="submit" class="btn btn-primary submit-btn">Submit &amp; schedule a call →</button>
+          <button type="submit" class="btn btn-primary submit-btn">Submit &amp; schedule a call <span class="arr" aria-hidden="true">→</span></button>
           <p class="form-note">After you submit, you'll be taken to my calendar to pick a time.</p>
         </form>
       </div>
@@ -1245,7 +1315,7 @@
       <div id="contactStep2" class="contact-step-hidden">
         <h2 tabindex="-1">Thanks for reaching out!</h2>
         <p>Please pick a time below to schedule our call. After you book, I'll reach out via email to confirm.</p>
-        <a id="calendarLink" href="https://calendar.app.google/26UWRuPgcFbi5q8F6" target="_blank" rel="noopener" class="btn btn-primary">Schedule a meeting →</a>
+        <a id="calendarLink" href="https://calendar.app.google/26UWRuPgcFbi5q8F6" target="_blank" rel="noopener" class="btn btn-primary">Schedule a meeting <span class="arr" aria-hidden="true">→</span></a>
       </div>
 
       <div id="contactStep3" class="contact-step-hidden">
@@ -1289,6 +1359,12 @@
 
 <script>
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Navbar: gain background + border once the page is scrolled
+  const siteHeader = document.querySelector('header');
+  const setHeaderState = ()=> siteHeader.classList.toggle('scrolled', window.scrollY > 8);
+  setHeaderState();
+  window.addEventListener('scroll', setHeaderState, {passive:true});
 
   // Mobile menu
   const menuToggle = document.getElementById('menuToggle');
