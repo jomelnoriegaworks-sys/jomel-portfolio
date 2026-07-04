@@ -25,7 +25,7 @@
     --line-strong: rgba(245,243,238,0.18);
     --paper:#F5F3EE;
     --paper-dim: rgba(245,243,238,0.62);
-    --paper-faint: rgba(245,243,238,0.38);
+    --paper-faint: rgba(245,243,238,0.48);
     --teal:#E8702A;
     --teal-soft: rgba(232,112,42,0.16);
     --green:#3fd68f;
@@ -176,7 +176,7 @@
     <h2>Five stages. Every lead visible, nothing in anyone's head.</h2>
     <p style="max-width:720px;">The pipeline mirrors how a clinic actually works — and every stage change fires its own automation, so moving a card <i>is</i> the work.</p>
     <figure>
-      <img src="case-assets/ss-pipeline.png" alt="GoHighLevel Opportunities view showing the five-stage Smile Society sales pipeline: New Lead, Booked, Showed Up, Treatment Confirmation Sent, and Treatment Plan Accepted (Won), with a test opportunity card in the Treatment Confirmation Sent stage">
+      <img loading="lazy" src="case-assets/ss-pipeline.png" alt="GoHighLevel Opportunities view showing the five-stage Smile Society sales pipeline: New Lead, Booked, Showed Up, Treatment Confirmation Sent, and Treatment Plan Accepted (Won), with a test opportunity card in the Treatment Confirmation Sent stage">
       <figcaption>The V2 Smile Society pipeline inside GoHighLevel. The card shown is test data.</figcaption>
     </figure>
     <ul class="stage-list">
@@ -194,36 +194,36 @@
     <span class="tag">The workflows</span>
     <h2>Nine published workflows. This is the engine room.</h2>
     <figure>
-      <img src="case-assets/ss-workflows-list.png" alt="GoHighLevel workflows list showing nine Smile Society workflows, every one with a green Published status badge">
+      <img loading="lazy" src="case-assets/ss-workflows-list.png" alt="GoHighLevel workflows list showing nine Smile Society workflows, every one with a green Published status badge">
       <figcaption>All nine workflows, all Published — not drafts, not mockups.</figcaption>
     </figure>
 
     <div class="wf-feature">
       <h3 style="font-size:20px;">Featured: 001 — New Lead speed-to-lead</h3>
       <p style="max-width:720px;">The moment the intake form is submitted, the system checks whether this contact already exists, creates or updates the opportunity, tags them, notifies the clinic, and sends the confirmation email with the booking link — then waits one hour and nudges anyone who hasn't booked. The lead never sits untouched.</p>
-      <figure><img src="case-assets/ss-wf-001.png" alt="Workflow canvas for 001 New Lead Stage: form-submitted trigger branching through find-opportunity, update or create opportunity, tagging, internal notification, confirmation email with booking link, one-hour wait, and reminder branches"><figcaption>001 New Lead Stage — the full canvas.</figcaption></figure>
+      <figure><img loading="lazy" src="case-assets/ss-wf-001.png" alt="Workflow canvas for 001 New Lead Stage: form-submitted trigger branching through find-opportunity, update or create opportunity, tagging, internal notification, confirmation email with booking link, one-hour wait, and reminder branches"><figcaption>001 New Lead Stage — the full canvas.</figcaption></figure>
     </div>
 
     <div class="wf-feature">
       <h3 style="font-size:20px;">Featured: 009 — Missed Call Text-Back</h3>
       <p style="max-width:720px;">A missed call triggers an instant SMS — with different messages during and after business hours — then waits 30 minutes for a reply. If the lead replies, they're tagged engaged and sent the booking link; if not, the clinic gets an internal task to follow up. A ringing phone during a procedure stops costing patients.</p>
-      <figure><img src="case-assets/ss-wf-009.png" alt="Workflow canvas for 009 Missed Call Text Back: incoming missed-call trigger, business-hours condition, branch-specific SMS, 30-minute reply window, engaged tagging with booking link on reply, and internal follow-up task on timeout"><figcaption>009 Missed Call Text Back — business-hours logic on the left, after-hours on the right.</figcaption></figure>
+      <figure><img loading="lazy" src="case-assets/ss-wf-009.png" alt="Workflow canvas for 009 Missed Call Text Back: incoming missed-call trigger, business-hours condition, branch-specific SMS, 30-minute reply window, engaged tagging with booking link on reply, and internal follow-up task on timeout"><figcaption>009 Missed Call Text Back — business-hours logic on the left, after-hours on the right.</figcaption></figure>
     </div>
 
     <div class="wf-feature">
       <h3 style="font-size:20px;">Featured: 002 — Booked-stage reminders</h3>
       <p style="max-width:720px;">Booking an appointment enrolls the patient in a reminder ladder: instant confirmation, then SMS + email the day before, then SMS + email shortly before the visit. No-show prevention runs on rails instead of on the receptionist's memory.</p>
-      <figure><img src="case-assets/ss-wf-002.png" alt="Workflow canvas for 002 Booked Stage: appointment-booked trigger, opportunity update, tagging, confirmation email, then timed waits with day-before and pre-appointment SMS and email reminders"><figcaption>002 Booked Stage — the reminder ladder.</figcaption></figure>
+      <figure><img loading="lazy" src="case-assets/ss-wf-002.png" alt="Workflow canvas for 002 Booked Stage: appointment-booked trigger, opportunity update, tagging, confirmation email, then timed waits with day-before and pre-appointment SMS and email reminders"><figcaption>002 Booked Stage — the reminder ladder.</figcaption></figure>
     </div>
 
     <h3 style="font-size:20px;margin-top:44px;">The other six, at a glance</h3>
     <div class="wf-grid">
-      <div class="wf-card"><img src="case-assets/ss-wf-003.png" alt="Workflow canvas for 003 Showed Up"><h3>003 — Showed Up</h3><p>Thank-you email, patient tagging, and needs-treatment routing after the visit.</p></div>
-      <div class="wf-card"><img src="case-assets/ss-wf-004.png" alt="Workflow canvas for 004 Treatment Confirmation Sent"><h3>004 — Treatment Confirmation Sent</h3><p>Multi-day confirmation sequence with condition and timeout branches for quiet patients.</p></div>
-      <div class="wf-card"><img src="case-assets/ss-wf-005.png" alt="Workflow canvas for 005 Treatment Plan Accepted"><h3>005 — Treatment Plan Accepted</h3><p>Tag swap, internal notification and task, then an automated review request a day later.</p></div>
-      <div class="wf-card"><img src="case-assets/ss-wf-006.png" alt="Workflow canvas for 006 No-Show Follow-up"><h3>006 — No-Show Follow-up</h3><p>Immediate rebooking SMS, then a "we missed you" email a day later. No-shows get rescued, not forgotten.</p></div>
-      <div class="wf-card"><img src="case-assets/ss-wf-007.png" alt="Workflow canvas for 007 Cancelled/Rescheduled"><h3>007 — Cancelled / Rescheduled</h3><p>Needs-reschedule tagging, SMS nudge, and an internal heads-up the moment plans change.</p></div>
-      <div class="wf-card"><img src="case-assets/ss-wf-008.png" alt="Workflow canvas for 008 Needs Treatment Tag"><h3>008 — Needs Treatment Tag</h3><p>Routes each appointment type to the right follow-up path with automatic tagging.</p></div>
+      <div class="wf-card"><img loading="lazy" src="case-assets/ss-wf-003.png" alt="Workflow canvas for 003 Showed Up"><h3>003 — Showed Up</h3><p>Thank-you email, patient tagging, and needs-treatment routing after the visit.</p></div>
+      <div class="wf-card"><img loading="lazy" src="case-assets/ss-wf-004.png" alt="Workflow canvas for 004 Treatment Confirmation Sent"><h3>004 — Treatment Confirmation Sent</h3><p>Multi-day confirmation sequence with condition and timeout branches for quiet patients.</p></div>
+      <div class="wf-card"><img loading="lazy" src="case-assets/ss-wf-005.png" alt="Workflow canvas for 005 Treatment Plan Accepted"><h3>005 — Treatment Plan Accepted</h3><p>Tag swap, internal notification and task, then an automated review request a day later.</p></div>
+      <div class="wf-card"><img loading="lazy" src="case-assets/ss-wf-006.png" alt="Workflow canvas for 006 No-Show Follow-up"><h3>006 — No-Show Follow-up</h3><p>Immediate rebooking SMS, then a "we missed you" email a day later. No-shows get rescued, not forgotten.</p></div>
+      <div class="wf-card"><img loading="lazy" src="case-assets/ss-wf-007.png" alt="Workflow canvas for 007 Cancelled/Rescheduled"><h3>007 — Cancelled / Rescheduled</h3><p>Needs-reschedule tagging, SMS nudge, and an internal heads-up the moment plans change.</p></div>
+      <div class="wf-card"><img loading="lazy" src="case-assets/ss-wf-008.png" alt="Workflow canvas for 008 Needs Treatment Tag"><h3>008 — Needs Treatment Tag</h3><p>Routes each appointment type to the right follow-up path with automatic tagging.</p></div>
     </div>
   </div>
 </section>
@@ -234,7 +234,7 @@
     <h2>The automation writes like a person, not a robot.</h2>
     <p style="max-width:720px;">Every email and SMS in the system is written and personalized with contact fields — here's the confirmation email from workflow 001, exactly as it lives in the builder.</p>
     <figure>
-      <img src="case-assets/ss-email-template.png" alt="GoHighLevel workflow builder showing the confirmation email editor: subject line 'Thank You for Choosing Smile Society!' and a personalized message using the contact first-name merge field">
+      <img loading="lazy" src="case-assets/ss-email-template.png" alt="GoHighLevel workflow builder showing the confirmation email editor: subject line 'Thank You for Choosing Smile Society!' and a personalized message using the contact first-name merge field">
       <figcaption>The confirmation &amp; booking-link email, open in the builder with its personalization tokens.</figcaption>
     </figure>
   </div>

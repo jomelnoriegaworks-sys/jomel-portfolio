@@ -6,12 +6,27 @@
 <title>Jomel Noriega | GoHighLevel CRM & Automation Specialist</title>
 <meta name="description" content="I help service businesses automate lead follow-up, appointment booking, customer communication, and CRM workflows using GoHighLevel.">
 <link rel="icon" type="image/png" href="favicon.png">
+<link rel="canonical" href="https://jomelnoriega.com/">
+<meta name="theme-color" content="#11151A">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://jomelnoriega.com/">
-<meta property="og:title" content="Jomel Noriega — GoHighLevel Automation Specialist">
-<meta property="og:description" content="I build GoHighLevel systems that follow up with every lead automatically — funnels, pipelines, CRM, and SMS &amp; email automation for service businesses.">
+<meta property="og:title" content="Jomel Noriega | GoHighLevel CRM &amp; Automation Specialist">
+<meta property="og:description" content="I help service businesses automate lead follow-up, appointment booking, customer communication, and CRM workflows using GoHighLevel.">
 <meta property="og:image" content="https://jomelnoriega.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
+<script>document.documentElement.classList.add('js');</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Jomel Noriega — GoHighLevel CRM & Automation Specialist",
+  "url": "https://jomelnoriega.com/",
+  "image": "https://jomelnoriega.com/og-image.png",
+  "email": "hello@jomelnoriega.com",
+  "description": "GoHighLevel automations, funnels, pipelines, CRM, and SMS & email follow-up systems for service businesses.",
+  "founder": { "@type": "Person", "name": "Jomel Noriega", "jobTitle": "GoHighLevel CRM & Automation Specialist" }
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -24,7 +39,7 @@
     --line-strong: rgba(245,243,238,0.18);
     --paper:#F5F3EE;
     --paper-dim: rgba(245,243,238,0.62);
-    --paper-faint: rgba(245,243,238,0.38);
+    --paper-faint: rgba(245,243,238,0.48);
     --teal:#E8702A;
     --teal-soft: rgba(232,112,42,0.16);
     --amber:#E8702A;
@@ -62,8 +77,23 @@
     padding:0 28px;
   }
   section{position:relative;}
+  [id]{scroll-margin-top:96px;}
 
   /* Skip link / focus */
+  .skip-link{
+    position:absolute;
+    left:16px; top:-52px;
+    z-index:100;
+    background:var(--teal);
+    color:#0B1210;
+    font-weight:600;
+    font-size:14px;
+    padding:10px 16px;
+    border-radius:0 0 10px 10px;
+    text-decoration:none;
+    transition:top .15s ease;
+  }
+  .skip-link:focus{top:0;}
   a:focus-visible, button:focus-visible{
     outline:2px solid var(--teal);
     outline-offset:3px;
@@ -88,13 +118,6 @@
     font-weight:700; font-size:18px;
     text-decoration:none;
   }
-  .logo-mark{
-    width:auto; height:64px; flex-shrink:0;
-    object-fit:contain;
-  }
-  .logo-mark-footer{
-    width:auto; height:110px;
-  }
   .navlinks{
     display:flex; gap:30px; align-items:center;
     list-style:none; margin:0; padding:0;
@@ -116,27 +139,58 @@
     text-decoration:none;
     white-space:nowrap;
   }
-  .navlinks-mobile-toggle{display:none;}
+  .menu-toggle{
+    display:none;
+    flex-direction:column; justify-content:center; align-items:center; gap:5px;
+    width:42px; height:42px;
+    background:none;
+    border:1px solid var(--line-strong);
+    border-radius:10px;
+    cursor:pointer;
+    padding:0;
+    flex-shrink:0;
+  }
+  .menu-toggle .bar{
+    display:block;
+    width:18px; height:2px;
+    background:var(--paper);
+    border-radius:2px;
+    transition:transform .2s ease, opacity .2s ease;
+  }
+  .menu-toggle[aria-expanded="true"] .bar:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .menu-toggle[aria-expanded="true"] .bar:nth-child(2){opacity:0;}
+  .menu-toggle[aria-expanded="true"] .bar:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .nav-right{display:flex; align-items:center; gap:12px;}
+  .mobile-menu{
+    display:none;
+    border-top:1px solid var(--line);
+    background:rgba(17,21,26,0.98);
+    padding:10px 28px 22px;
+  }
+  .mobile-menu a{
+    display:block;
+    padding:13px 2px;
+    text-decoration:none;
+    font-size:16px;
+    color:var(--paper-dim);
+    border-bottom:1px solid var(--line);
+  }
+  .mobile-menu a.mobile-menu-cta{
+    margin-top:14px;
+    text-align:center;
+    background:var(--teal);
+    color:#0B1210;
+    font-weight:600;
+    border-radius:999px;
+    padding:12px 18px;
+    border-bottom:none;
+  }
   @media (max-width: 760px){
     .navlinks-list{display:none;}
-    .nav-cta-desktop{display:none;}
-  }
-
-  /* ===== Automation trail (signature element) ===== */
-  .trail{
-    position:absolute;
-    left:50%;
-    top:0; bottom:0;
-    width:1px;
-    transform:translateX(-50%);
-    z-index:0;
-    pointer-events:none;
-  }
-  .trail-inner{
-    position:absolute;
-    left:0; top:0;
-    width:1px; height:100%;
-    background:linear-gradient(to bottom, transparent, var(--line-strong) 8%, var(--line-strong) 92%, transparent);
+    .menu-toggle{display:flex;}
+    .mobile-menu.open{display:block;}
+    .nav{padding:14px 20px;}
+    .nav-cta{padding:8px 14px; font-size:13px;}
   }
 
   /* ===== Hero ===== */
@@ -213,7 +267,9 @@
     background:var(--panel);
     padding:22px 22px 18px;
     overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
   }
+  .hero-strip svg{min-width:880px;}
   .hero-strip-label{
     font-family:'JetBrains Mono', monospace;
     font-size:11.5px;
@@ -521,7 +577,7 @@
     padding:32px 28px;
     overflow-x:auto;
   }
-  .wf-diagram svg{display:block; min-width:560px;}
+  .wf-diagram svg{display:block; min-width:860px;}
   @media (max-width: 700px){
     .wf-meta{grid-template-columns:1fr;}
   }
@@ -549,8 +605,8 @@
     text-transform:uppercase;
     letter-spacing:.07em;
     color:var(--amber);
-    border:1px solid rgba(42,157,143,0.4);
-    background:rgba(42,157,143,0.1);
+    border:1px solid rgba(232,112,42,0.35);
+    background:rgba(232,112,42,0.12);
     padding:5px 11px;
     border-radius:999px;
     margin-bottom:18px;
@@ -705,17 +761,6 @@
     margin-right:7px;
     font-weight:700;
   }
-  .placeholder-flag{
-    display:inline-block;
-    margin-top:10px;
-    font-size:11px;
-    font-family:'JetBrains Mono', monospace;
-    color:var(--amber);
-    background:rgba(42,157,143,0.1);
-    border:1px solid rgba(42,157,143,0.3);
-    padding:3px 9px;
-    border-radius:999px;
-  }
   @media (max-width: 700px){
     .testi-grid{grid-template-columns:1fr;}
   }
@@ -782,11 +827,6 @@
     flex-direction:column;
     gap:18px;
   }
-  .form-row{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:14px;
-  }
   .form-field{
     display:flex;
     flex-direction:column;
@@ -825,19 +865,23 @@
     text-align:center;
     margin:6px auto 0;
   }
-  .link-btn{
-    background:none;
-    border:none;
-    color:var(--teal);
-    font-weight:600;
+  .form-error{
+    display:none;
+    background:rgba(224,120,86,0.12);
+    border:1px solid rgba(224,120,86,0.4);
+    color:var(--paper);
     font-size:14px;
-    text-decoration:underline;
-    cursor:pointer;
-    padding:0;
-    font-family:'Inter', sans-serif;
+    border-radius:10px;
+    padding:12px 14px;
+    margin:0;
   }
-  @media (max-width: 560px){
-    .form-row{grid-template-columns:1fr;}
+  .form-error.visible{display:block;}
+  .form-error a{color:var(--coral);}
+  .hp-field{
+    position:absolute !important;
+    left:-9999px !important;
+    width:1px; height:1px;
+    overflow:hidden;
   }
   @media (max-width: 720px){
     #playbook .wrap > div{grid-template-columns:1fr !important; gap:20px !important;}
@@ -881,25 +925,28 @@
     color:var(--slate);
   }
 
-  /* reveal on scroll */
-  .reveal{
+  /* reveal on scroll — hidden only when JS is present to reveal it */
+  .js .reveal{
     opacity:0;
     transform:translateY(16px);
     transition:opacity .6s ease, transform .6s ease;
   }
-  .reveal.in{opacity:1; transform:translateY(0);}
+  .js .reveal.in{opacity:1; transform:translateY(0);}
 
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto;}
-    .reveal{opacity:1; transform:none; transition:none;}
+    .js .reveal{opacity:1; transform:none; transition:none;}
     .eyebrow .dot{animation:none;}
+    .menu-toggle .bar{transition:none;}
   }
 </style>
 </head>
 <body>
 
+<a class="skip-link" href="#top">Skip to content</a>
+
 <header>
-  <nav class="nav">
+  <nav class="nav" aria-label="Main">
     <a href="#top" class="logo" style="display:inline-flex;align-items:center;gap:12px;text-decoration:none;">
       <span style="display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;background:#FFFFFF;border-radius:12px;flex-shrink:0;">
         <img src="jn-monogram.png" alt="JN monogram" style="width:32px;height:32px;object-fit:contain;">
@@ -913,8 +960,21 @@
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
-    <a href="#contact" class="nav-cta nav-cta-desktop">Book a free call</a>
+    <div class="nav-right">
+      <a href="#contact" class="nav-cta">Book a free call</a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+    </div>
   </nav>
+  <div id="mobileMenu" class="mobile-menu">
+    <a href="#how-it-works">How It Works</a>
+    <a href="#workflows">Workflows</a>
+    <a href="#case-study">Case Study</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact" class="mobile-menu-cta">Book a free call</a>
+  </div>
 </header>
 
 <main id="top">
@@ -949,7 +1009,7 @@
       <div class="hero-panel">
         <div class="hero-strip">
           <div class="hero-strip-label">live in your CRM the moment a lead comes in</div>
-          <svg viewBox="0 0 980 110" width="100%" height="110" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 980 110" width="100%" height="110" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Automation flow: a form submission triggers an SMS within 60 seconds, adds the lead to a pipeline, notifies you, and ends in a booked call.">
             <defs>
               <marker id="arrM" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
                 <path d="M0,0 L6,3 L0,6 Z" fill="#7C8893"/>
@@ -1111,7 +1171,7 @@
           <p class="tagline">A complete GoHighLevel build designed to turn a visitor into a booked consultation without friction.</p>
         </div>
         <div class="case-preview">
-          <img src="case-assets/ss-workflows-list.png" alt="GoHighLevel workflow overview for the Smile Society build">
+          <img src="case-assets/ss-workflows-list.png" alt="GoHighLevel workflow overview for the Smile Society build" loading="lazy">
           <div class="case-preview-copy">
             <span class="lbl">What this system does</span>
             <ul>
@@ -1130,7 +1190,7 @@
             <li>The native GHL calendar that books and triggers follow-up automatically</li>
           </ul>
           <div class="video-frame">
-            <iframe src="https://kommodo.ai/embed/recordings/WyqJYkCjrR0eNayOib9e" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Smile Society funnel walkthrough"></iframe>
+            <iframe src="https://kommodo.ai/embed/recordings/WyqJYkCjrR0eNayOib9e" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Smile Society funnel walkthrough"></iframe>
           </div>
         </div>
         <div class="case-body">
@@ -1175,7 +1235,7 @@
       </div>
       <div class="about-card">
         <div class="about-media">
-          <img src="jomel-headshot.png" alt="Jomel Noriega, GoHighLevel Automation Specialist">
+          <img src="jomel-headshot.png" alt="Jomel Noriega, GoHighLevel Automation Specialist" width="140" height="140" loading="lazy">
           <div>
             <div class="about-name">Jomel Noriega</div>
             <div class="about-role">GoHighLevel CRM & Automation Specialist</div>
@@ -1273,7 +1333,7 @@
         <div id="pbCapture">
           <form id="pbForm" style="display:flex;gap:10px;flex-wrap:wrap;">
             <label for="pb-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Email</label>
-            <input type="email" id="pb-email" name="email" required placeholder="you@business.com" style="flex:1;min-width:200px;background:var(--panel);border:1px solid var(--line-strong);border-radius:10px;padding:12px 14px;color:var(--paper);font-family:'Inter',sans-serif;font-size:15px;">
+            <input type="email" id="pb-email" name="email" required autocomplete="email" placeholder="you@business.com" style="flex:1;min-width:200px;background:var(--panel);border:1px solid var(--line-strong);border-radius:10px;padding:12px 14px;color:var(--paper);font-family:'Inter',sans-serif;font-size:15px;">
             <button type="submit" class="btn btn-primary" style="border:none;cursor:pointer;font-family:'Space Grotesk',sans-serif;">Get the guide &rarr;</button>
           </form>
           <p style="margin:10px 0 0;font-size:12.5px;color:var(--paper-faint);">No spam. One email, one PDF.</p>
@@ -1297,24 +1357,24 @@
       </div>
       <div class="faq-list" id="faqList">
         <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">Is the call really free?<span class="plus">+</span></button>
-          <div class="faq-a"><div class="faq-a-inner">Yes. No obligation, no pitch deck. We talk through what's actually breaking and what's worth automating first.</div></div>
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-a-1">Is the call really free?<span class="plus">+</span></button>
+          <div class="faq-a" id="faq-a-1"><div class="faq-a-inner">Yes. No obligation, no pitch deck. We talk through what's actually breaking and what's worth automating first.</div></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">Will I see the plan before anything gets built?<span class="plus">+</span></button>
-          <div class="faq-a"><div class="faq-a-inner">Always. You'll see the full plan and exact scope before any build starts, so there are no surprises on the invoice or the timeline.</div></div>
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-a-2">Will I see the plan before anything gets built?<span class="plus">+</span></button>
+          <div class="faq-a" id="faq-a-2"><div class="faq-a-inner">Always. You'll see the full plan and exact scope before any build starts, so there are no surprises on the invoice or the timeline.</div></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">Who owns the automation once it's built?<span class="plus">+</span></button>
-          <div class="faq-a"><div class="faq-a-inner">You do. Everything is built inside your own GoHighLevel account, and I walk you through it so you're never locked into me just to keep it running.</div></div>
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-a-3">Who owns the automation once it's built?<span class="plus">+</span></button>
+          <div class="faq-a" id="faq-a-3"><div class="faq-a-inner">You do. Everything is built inside your own GoHighLevel account, and I walk you through it so you're never locked into me just to keep it running.</div></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">Do you take on every project?<span class="plus">+</span></button>
-          <div class="faq-a"><div class="faq-a-inner">No — I keep my client list small on purpose. Every build is hands-on and I work with clients directly, so quality stays high instead of spreading thin.</div></div>
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-a-4">Do you take on every project?<span class="plus">+</span></button>
+          <div class="faq-a" id="faq-a-4"><div class="faq-a-inner">No — I keep my client list small on purpose. Every build is hands-on and I work with clients directly, so quality stays high instead of spreading thin.</div></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q" aria-expanded="false">What if I'm not fully using GoHighLevel yet?<span class="plus">+</span></button>
-          <div class="faq-a"><div class="faq-a-inner">That's the most common starting point. Most clients are paying for GHL and using a fraction of it — that's exactly what the first call is for.</div></div>
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-a-5">What if I'm not fully using GoHighLevel yet?<span class="plus">+</span></button>
+          <div class="faq-a" id="faq-a-5"><div class="faq-a-inner">That's the most common starting point. Most clients are paying for GHL and using a fraction of it — that's exactly what the first call is for.</div></div>
         </div>
       </div>
     </div>
@@ -1331,23 +1391,28 @@
         <form id="contactForm" class="contact-form">
           <div class="form-field">
             <label for="cf-name">Name</label>
-            <input type="text" id="cf-name" name="name" required placeholder="Your name">
+            <input type="text" id="cf-name" name="name" required autocomplete="name" placeholder="Your name">
           </div>
           <div class="form-field">
             <label for="cf-email">Email</label>
-            <input type="email" id="cf-email" name="email" required placeholder="you@business.com">
+            <input type="email" id="cf-email" name="email" required autocomplete="email" placeholder="you@business.com">
           </div>
           <div class="form-field">
             <label for="cf-message">What do you need automated?</label>
             <textarea id="cf-message" name="message" rows="4" placeholder="A short message about what's breaking or what you want set up"></textarea>
           </div>
+          <div class="hp-field" aria-hidden="true">
+            <label for="cf-company">Leave this field empty</label>
+            <input type="text" id="cf-company" name="_gotcha" tabindex="-1" autocomplete="off">
+          </div>
+          <p class="form-error" id="formError" role="alert">Something went wrong sending your message. Please try again, or email me directly at <a href="mailto:hello@jomelnoriega.com">hello@jomelnoriega.com</a>.</p>
           <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Submit &amp; schedule a call →</button>
           <p class="form-note">After you submit, you'll be taken to my calendar to pick a time.</p>
         </form>
       </div>
 
       <div id="contactStep2" class="contact-step-hidden">
-        <h2>Thanks for reaching out!</h2>
+        <h2 tabindex="-1" style="outline:none;">Thanks for reaching out!</h2>
         <p>Please pick a time below — you'll get a calendar confirmation in your inbox the moment you book.</p>
         <a id="calendarLink" href="https://calendar.app.google/26UWRuPgcFbi5q8F6" target="_blank" rel="noopener" class="btn btn-primary">Schedule a meeting →</a>
       </div>
@@ -1395,12 +1460,36 @@
 </footer>
 
 <script>
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Mobile menu
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  if(menuToggle && mobileMenu){
+    menuToggle.addEventListener('click', ()=>{
+      const open = mobileMenu.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(open));
+      menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    mobileMenu.querySelectorAll('a').forEach(a=>{
+      a.addEventListener('click', ()=>{
+        mobileMenu.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Open menu');
+      });
+    });
+  }
+
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, {threshold:0.12});
-  reveals.forEach(el=>io.observe(el));
+  if('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:0.12});
+    reveals.forEach(el=>io.observe(el));
+  } else {
+    reveals.forEach(el=>el.classList.add('in'));
+  }
 
   // FAQ accordion
   document.querySelectorAll('.faq-item').forEach(item=>{
@@ -1429,6 +1518,7 @@
   const step2 = document.getElementById('contactStep2');
   const step3 = document.getElementById('contactStep3');
   const calendarLink = document.getElementById('calendarLink');
+  const formError = document.getElementById('formError');
 
   if(contactForm){
     contactForm.addEventListener('submit', async function(e){
@@ -1437,6 +1527,7 @@
       const originalBtnText = submitBtn.innerHTML;
       submitBtn.disabled = true;
       submitBtn.innerHTML = 'Sending...';
+      if(formError) formError.classList.remove('visible');
 
       const formData = new FormData(contactForm);
 
@@ -1450,9 +1541,11 @@
         if(response.ok){
           step1.classList.add('contact-step-hidden');
           step2.classList.remove('contact-step-hidden');
+          const heading = step2.querySelector('h2');
+          if(heading) heading.focus({preventScroll:true});
           setTimeout(function(){
             const target = document.getElementById('contact');
-            if(target) target.scrollIntoView({behavior: 'smooth'});
+            if(target) target.scrollIntoView({behavior: prefersReducedMotion ? 'auto' : 'smooth'});
           }, 100);
         } else {
           throw new Error('Submission failed with status ' + response.status);
@@ -1460,7 +1553,7 @@
       } catch(err) {
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalBtnText;
-        alert('Something went wrong sending your message. Please try again, or email me directly at hello@jomelnoriega.com.');
+        if(formError) formError.classList.add('visible');
         console.error('Form submission error:', err);
       }
     });
