@@ -63,6 +63,14 @@
   figure{margin:26px 0 8px;}
   figure img{width:100%;height:auto;display:block;border-radius:10px;border:1px solid var(--line-strong);background:#fff;}
   figcaption{font-size:13.5px;color:var(--paper-faint);margin-top:10px;font-family:'JetBrains Mono',monospace;letter-spacing:.02em;}
+  /* featured workflow canvases are tall portrait screenshots — show at natural size, capped */
+  .wf-feature figure img{
+    width:auto;
+    max-width:100%;
+    max-height:520px;
+    margin:0 auto;
+  }
+  .wf-feature figcaption{text-align:center;}
   .stage-list{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:10px;}
   .stage-list li{background:var(--ink-soft);border:1px solid var(--line);border-radius:10px;padding:12px 16px;font-size:14.5px;color:var(--paper-dim);}
   .stage-list li b{color:var(--paper);font-weight:600;}
