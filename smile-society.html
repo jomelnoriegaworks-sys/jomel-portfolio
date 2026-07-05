@@ -42,7 +42,14 @@
   html{scroll-behavior:smooth;}
   body{margin:0;position:relative;isolation:isolate;background:radial-gradient(circle at top left, rgba(232,112,42,0.16), transparent 28%),radial-gradient(circle at 85% 10%, rgba(255,255,255,0.05), transparent 24%),linear-gradient(135deg, var(--ink) 0%, #0d1218 100%);color:var(--paper);font-family:'Manrope',sans-serif;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
   body::before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(120deg, rgba(255,255,255,0.025), transparent 40%, rgba(255,255,255,0.012));mix-blend-mode:screen;}
-  #background-canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.95;}
+  #background-canvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.95;transition:opacity .5s ease;}
+  body.no-beams #background-canvas{opacity:0;}
+  #beam-toggle{position:fixed;top:10px;right:10px;z-index:60;width:38px;height:38px;display:inline-flex;align-items:center;justify-content:center;appearance:none;cursor:pointer;border-radius:50%;border:1px solid rgba(245,243,238,0.16);background:rgba(22,29,39,0.55);backdrop-filter:blur(6px);color:rgba(247,243,237,0.55);opacity:.6;transition:opacity .2s ease, color .2s ease, border-color .2s ease;}
+  #beam-toggle:hover, #beam-toggle:focus-visible{opacity:1;}
+  #beam-toggle:focus-visible{outline:2px solid var(--teal);outline-offset:2px;}
+  #beam-toggle.on{color:var(--teal);border-color:rgba(232,112,42,0.5);opacity:.85;}
+  #beam-toggle svg{width:17px;height:17px;display:block;}
+  @media (max-width:760px){#beam-toggle{display:none;}}
   .site-shell{position:relative;z-index:1;}
   h1,h2,h3{font-family:'General Sans',sans-serif;line-height:1.15;margin:0 0 14px;font-weight:600;}
   h2{font-weight:400;}
@@ -144,6 +151,13 @@
 </head>
 <body>
 <canvas id="background-canvas" aria-hidden="true"></canvas>
+<button id="beam-toggle" type="button" aria-pressed="false" aria-label="Toggle background beams" title="Background beams on/off">
+  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+    <path d="M3 14 L8 2"/>
+    <path d="M7.5 14 L12 4"/>
+    <path d="M12 14 L14.5 7"/>
+  </svg>
+</button>
 <div class="site-shell">
 <div class="wrap">
   <div class="topbar">
@@ -349,20 +363,30 @@
     raf = requestAnimationFrame(animate);
   }
 
-  // Beam background disabled by request — flip BEAMS_ENABLED to true to restore it.
-  const BEAMS_ENABLED = false;
+  // Beams are off by default; the corner toggle turns them on and the choice is remembered.
+  let beamsOn = false;
+  try { beamsOn = localStorage.getItem('beams') === 'on'; } catch (e) {}
 
   window.addEventListener('resize', () => {
-    if (!BEAMS_ENABLED) return;
+    if (!beamsOn) return;
     cancelAnimationFrame(raf);
     resizeCanvas();
     animate();
   });
 
-  if (BEAMS_ENABLED) {
-    resizeCanvas();
-    animate();
+  const beamToggle = document.getElementById('beam-toggle');
+  function applyBeams() {
+    document.body.classList.toggle('no-beams', !beamsOn);
+    beamToggle.classList.toggle('on', beamsOn);
+    beamToggle.setAttribute('aria-pressed', String(beamsOn));
+    if (beamsOn) { resizeCanvas(); animate(); } else { cancelAnimationFrame(raf); }
   }
+  beamToggle.addEventListener('click', () => {
+    beamsOn = !beamsOn;
+    try { localStorage.setItem('beams', beamsOn ? 'on' : 'off'); } catch (e) {}
+    applyBeams();
+  });
+  applyBeams();
 </script>
 </div>
 </body>
