@@ -1,6 +1,7 @@
 const WORKER_URL = "https://jomel-ai.jomelnoriegaworks.workers.dev";
 
 const chatbotButton = document.getElementById("chatbot-button");
+const chatbotGreeting = document.getElementById("chatbot-greeting");
 const chatbotWindow = document.getElementById("chatbot-window");
 const chatbotClose = document.getElementById("chatbot-close");
 const chatbotBody = document.getElementById("chatbot-body");
@@ -11,14 +12,19 @@ const sendButton = document.getElementById("send-message");
 // (also what stops the bot from greeting on every message).
 const chatHistory = [];
 
-chatbotButton.addEventListener("click", () => {
+function openChat() {
   chatbotWindow.style.display = "flex";
   chatbotButton.style.display = "none";
-});
+  if (chatbotGreeting) chatbotGreeting.style.display = "none";
+  chatbotInput.focus();
+}
+
+chatbotButton.addEventListener("click", openChat);
+if (chatbotGreeting) chatbotGreeting.addEventListener("click", openChat);
 
 chatbotClose.addEventListener("click", () => {
   chatbotWindow.style.display = "none";
-  chatbotButton.style.display = "block";
+  chatbotButton.style.display = "flex";
 });
 
 sendButton.addEventListener("click", sendMessage);
