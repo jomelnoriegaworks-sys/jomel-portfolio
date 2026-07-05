@@ -1126,6 +1126,7 @@
     .menu-toggle .bar{transition:none;}
   }
 </style>
+<link rel="stylesheet" href="chatbot.css">
 </head>
 <body>
 <canvas id="background-canvas" aria-hidden="true"></canvas>
@@ -1874,5 +1875,50 @@
   });
   applyBeams();
 </script>
+<div id="chatbot-button">
+    💬 Hey, what's up!👋
+</div>
+<div id="chatbot-window">
+
+    <div id="chatbot-header">
+
+        <div>
+            <strong>Jomel</strong><br>
+            <small>Usually replies within a few minutes</small>
+        </div>
+
+        <button id="chatbot-close">
+            ✕
+        </button>
+
+    </div>
+
+    <div id="chatbot-body">
+
+        <div class="bot-message">
+
+            <p>I hope you're doing good today. Can I help you with anything?</p>
+
+
+        </div>
+
+    </div>
+
+    <div id="chatbot-footer">
+
+        <input
+            id="chatbot-input"
+            type="text"
+            placeholder="Ask me anything..."
+        >
+
+        <button id="send-message">
+            ➜
+        </button>
+
+    </div>
+
+</div>
+<script src="chatbot.js"></script>
 </body>
 </html>
