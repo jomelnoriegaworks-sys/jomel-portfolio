@@ -349,14 +349,20 @@
     raf = requestAnimationFrame(animate);
   }
 
+  // Beam background disabled by request — flip BEAMS_ENABLED to true to restore it.
+  const BEAMS_ENABLED = false;
+
   window.addEventListener('resize', () => {
+    if (!BEAMS_ENABLED) return;
     cancelAnimationFrame(raf);
     resizeCanvas();
     animate();
   });
 
-  resizeCanvas();
-  animate();
+  if (BEAMS_ENABLED) {
+    resizeCanvas();
+    animate();
+  }
 </script>
 </div>
 </body>
