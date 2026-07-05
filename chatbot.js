@@ -23,14 +23,54 @@ chatbotInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter") sendMessage();
 });
 
+// Bot replies may only contain these tags; everything else — scripts, event
+// handlers, javascript: links — is stripped before the reply touches the DOM.
+const ALLOWED_REPLY_TAGS = ["P", "UL", "OL", "LI", "BR", "STRONG", "EM", "B", "I", "A"];
+
+function sanitizeReply(html) {
+  const doc = new DOMParser().parseFromString(html, "text/html");
+
+  doc.body.querySelectorAll("script, style, iframe, object, embed, link, meta, form").forEach((el) => el.remove());
+
+  doc.body.querySelectorAll("*").forEach((el) => {
+    if (!ALLOWED_REPLY_TAGS.includes(el.tagName)) {
+      el.replaceWith(...el.childNodes);
+      return;
+    }
+
+    const isLink = el.tagName === "A";
+    const href = isLink ? el.getAttribute("href") || "" : "";
+    const cls = isLink ? el.getAttribute("class") || "" : "";
+
+    [...el.attributes].forEach((attr) => el.removeAttribute(attr.name));
+
+    if (isLink) {
+      if (/^https:\/\//i.test(href)) el.setAttribute("href", href);
+      el.setAttribute("target", "_blank");
+      el.setAttribute("rel", "noopener noreferrer");
+      if (cls === "chat-booking-button") el.className = cls;
+    }
+  });
+
+  return [...doc.body.childNodes];
+}
+
+function appendChatMessage(className) {
+  const el = document.createElement("div");
+  el.className = className;
+  chatbotBody.appendChild(el);
+  return el;
+}
+
 async function sendMessage() {
   const message = chatbotInput.value.trim();
   if (!message) return;
 
-  chatbotBody.innerHTML += `<div class="user-message">${message}</div>`;
+  appendChatMessage("user-message").textContent = message;
   chatbotInput.value = "";
 
-  chatbotBody.innerHTML += `<div class="typing-message" id="typing">Jomel is typing...</div>`;
+  const typingEl = appendChatMessage("typing-message");
+  typingEl.textContent = "Jomel is typing...";
   chatbotBody.scrollTop = chatbotBody.scrollHeight;
 
   try {
@@ -42,21 +82,18 @@ async function sendMessage() {
 
     const data = await response.json();
 
-    document.getElementById("typing")?.remove();
+    typingEl.remove();
 
-    chatbotBody.innerHTML += `
-      <div class="bot-message">
-        ${data.reply || "Sorry, I couldn't reply right now. Please try again in a few minutes."}
-      </div>
-    `;
+    const botEl = appendChatMessage("bot-message");
+    if (data.reply) {
+      botEl.append(...sanitizeReply(data.reply));
+    } else {
+      botEl.textContent = "Sorry, I couldn't reply right now. Please try again in a few minutes.";
+    }
   } catch (error) {
-    document.getElementById("typing")?.remove();
+    typingEl.remove();
 
-    chatbotBody.innerHTML += `
-      <div class="bot-message">
-        Sorry, something went wrong. Please try again in a few minutes.
-      </div>
-    `;
+    appendChatMessage("bot-message").textContent = "Sorry, something went wrong. Please try again in a few minutes.";
   }
 
   chatbotBody.scrollTop = chatbotBody.scrollHeight;
