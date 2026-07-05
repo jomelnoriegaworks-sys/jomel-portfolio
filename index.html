@@ -846,44 +846,73 @@
   }
 
   /* ===== Testimonials ===== */
-  .testi-grid{
+  .testi-v2{
     display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
+    grid-template-columns:1.35fr 1fr;
+    gap:14px;
+    align-items:stretch;
   }
-  .testi{
-    border:1px solid rgba(255,255,255,0.08);
+  .testi-feat{
+    background:var(--panel);
+    border:1px solid rgba(232,112,42,0.30);
     border-radius:20px;
-    background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
-    padding:26px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.14);
+    padding:30px 30px 24px;
+    display:flex;
+    flex-direction:column;
+    box-shadow:0 18px 50px rgba(0,0,0,0.25);
   }
-  .testi{
+  .testi-badge{
+    display:inline-flex; align-items:center; gap:7px; align-self:flex-start;
+    font-family:'JetBrains Mono', monospace;
+    font-size:10.5px; letter-spacing:.07em; text-transform:uppercase;
+    color:var(--teal);
+    background:rgba(232,112,42,0.12);
+    border:1px solid rgba(232,112,42,0.35);
+    border-radius:999px;
+    padding:5px 11px;
+    margin-bottom:18px;
+  }
+  .testi-badge.neutral{
+    color:var(--paper-faint);
+    background:rgba(245,243,238,0.04);
+    border-color:var(--line-strong);
+  }
+  .testi-feat blockquote{
+    margin:0 0 18px;
+    font-family:'General Sans', sans-serif;
+    font-weight:400;
+    font-size:clamp(17px, 2vw, 21px);
+    line-height:1.45;
+    color:var(--paper);
+    flex:1;
+  }
+  .testi-rail{display:flex; flex-direction:column; gap:14px;}
+  .testi-mini{
+    background:var(--panel);
+    border:1px solid rgba(245,243,238,0.10);
+    border-radius:16px;
+    padding:18px 20px;
+    flex:1;
+    display:flex;
+    flex-direction:column;
     transition:border-color .25s ease;
   }
-  .testi:hover{border-color:var(--line-strong);}
-  .testi .quote-mark{
-    font-family:'General Sans', sans-serif;
-    font-size:26px;
-    color:var(--teal);
-    opacity:0.45;
-    line-height:1;
-    display:block;
-    margin-bottom:8px;
+  .testi-mini:hover{border-color:var(--line-strong);}
+  .testi-mini .testi-badge{margin-bottom:12px; padding:4px 9px; font-size:9.5px;}
+  .testi-mini blockquote{
+    margin:0 0 12px;
+    font-size:14px;
+    line-height:1.55;
+    color:var(--paper-dim);
+    flex:1;
   }
-  .testi p{color:var(--paper-dim); font-size:14.5px; margin:0 0 14px; font-style:italic;}
-  .testi .who{
-    font-size:13px; color:var(--paper-faint); font-family:'Manrope', sans-serif;
-    margin-top:14px; padding-top:12px; border-top:1px solid var(--line);
+  .testi-feat .who, .testi-mini .who{
+    font-size:13px; color:var(--paper-faint);
+    padding-top:12px; border-top:1px solid var(--line);
   }
-  .testi .who.verified::before{
-    content:"\2713";
-    color:#3fd68f;
-    margin-right:7px;
-    font-weight:700;
-  }
-  @media (max-width: 700px){
-    .testi-grid{grid-template-columns:1fr;}
+  .testi-feat .who strong, .testi-mini .who strong{color:var(--paper-dim); font-weight:600;}
+  @media (max-width: 760px){
+    .testi-v2{grid-template-columns:1fr;}
   }
 
   /* ===== FAQ ===== */
@@ -1419,26 +1448,28 @@
         <h2>In their words, not mine.</h2>
         <p style="margin-top:10px;color:var(--paper-faint);font-size:14.5px;">Don't take my word for it — <a href="https://www.upwork.com/freelancers/~0150ffd8bd7b5a6321" target="_blank" rel="noopener" style="color:var(--teal);">read the verified reviews on my Upwork profile &rarr;</a></p>
       </div>
-      <div class="testi-grid">
-        <div class="testi">
-          <span class="quote-mark">"</span>
-          <p>Your contributions over the years have always been appreciated, and if you are open to returning, we would be happy to offer you a pay increase to reflect your value to the team.</p>
-          <div class="who">— Gear Elevation, my employer of 5 years &middot; return offer, 2025</div>
+      <div class="testi-v2">
+        <div class="testi-feat">
+          <span class="testi-badge">Return offer &middot; employer of 5 years</span>
+          <blockquote>"Your contributions over the years have always been appreciated, and if you are open to returning, we would be happy to offer you a pay increase to reflect your value to the team."</blockquote>
+          <div class="who"><strong>Gear Elevation</strong> &middot; return offer, 2025</div>
         </div>
-        <div class="testi">
-          <span class="quote-mark">"</span>
-          <p>Jomel can be a valuable asset to any company looking to onboard him.</p>
-          <div class="who">— Megan Reeder &middot; HR Generalist, ItsWorthMore.com LLC</div>
-        </div>
-        <div class="testi">
-          <span class="quote-mark">"</span>
-          <p>Jomel is a hard worker, quick learner, and great communicator. Highly recommended!</p>
-          <div class="who verified">— Matt R. &middot; Verified Upwork review</div>
-        </div>
-        <div class="testi">
-          <span class="quote-mark">"</span>
-          <p>Positive attitude, prompt communications. Thank you!</p>
-          <div class="who verified">— Anton D. &middot; Upwork review &middot; endorsed "Clear Communicator"</div>
+        <div class="testi-rail">
+          <div class="testi-mini">
+            <span class="testi-badge">&#10003; Verified Upwork review</span>
+            <blockquote>"Jomel is a hard worker, quick learner, and great communicator. Highly recommended!"</blockquote>
+            <div class="who"><strong>Matt R.</strong></div>
+          </div>
+          <div class="testi-mini">
+            <span class="testi-badge">&#10003; Verified Upwork &middot; "Clear Communicator"</span>
+            <blockquote>"Positive attitude, prompt communications. Thank you!"</blockquote>
+            <div class="who"><strong>Anton D.</strong></div>
+          </div>
+          <div class="testi-mini">
+            <span class="testi-badge neutral">HR reference</span>
+            <blockquote>"Jomel can be a valuable asset to any company looking to onboard him."</blockquote>
+            <div class="who"><strong>Megan Reeder</strong> &middot; HR Generalist, ItsWorthMore.com LLC</div>
+          </div>
         </div>
       </div>
     </div>
