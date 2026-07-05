@@ -7,6 +7,10 @@ const chatbotBody = document.getElementById("chatbot-body");
 const chatbotInput = document.getElementById("chatbot-input");
 const sendButton = document.getElementById("send-message");
 
+// Recent turns sent to the Worker so replies have conversation context
+// (also what stops the bot from greeting on every message).
+const chatHistory = [];
+
 chatbotButton.addEventListener("click", () => {
   chatbotWindow.style.display = "flex";
   chatbotButton.style.display = "none";
@@ -77,7 +81,7 @@ async function sendMessage() {
     const response = await fetch(WORKER_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message })
+      body: JSON.stringify({ message, history: chatHistory.slice(-10) })
     });
 
     const data = await response.json();
@@ -90,6 +94,9 @@ async function sendMessage() {
     } else {
       botEl.textContent = "Sorry, I couldn't reply right now. Please try again in a few minutes.";
     }
+
+    chatHistory.push({ role: "user", text: message });
+    chatHistory.push({ role: "model", text: botEl.textContent });
   } catch (error) {
     typingEl.remove();
 
