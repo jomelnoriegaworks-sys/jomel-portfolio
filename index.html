@@ -27,16 +27,16 @@
   "founder": { "@type": "Person", "name": "Jomel Noriega", "jobTitle": "GoHighLevel CRM & Automation Specialist" }
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" href="fonts/general-sans-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/general-sans-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/manrope-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/manrope-600.woff2" as="font" type="font/woff2" crossorigin>
 <style>
   @font-face{font-family:'General Sans';src:url('fonts/general-sans-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;}
   @font-face{font-family:'General Sans';src:url('fonts/general-sans-600.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap;}
   @font-face{font-family:'Manrope';src:url('fonts/manrope-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;}
   @font-face{font-family:'Manrope';src:url('fonts/manrope-600.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap;}
+  @font-face{font-family:'JetBrains Mono';src:url('fonts/jetbrains-mono.woff2') format('woff2');font-weight:400 500;font-style:normal;font-display:swap;}
   :root{
     --ink:#080b10;
     --ink-soft:#121720;
@@ -1301,7 +1301,7 @@
         <p>Every build starts as a map before it becomes a single click inside GoHighLevel. Here's what that planning looks like, with the business problem each one is actually solving.</p>
       </div>
 
-      <div class="workflow-tabs" id="wfTabs"></div>
+      <div class="workflow-tabs" id="wfTabs" role="tablist" aria-label="GoHighLevel workflow examples"></div>
       <div id="wfPanels"></div>
     </div>
   </section>
@@ -1324,7 +1324,7 @@
           <p class="tagline">A complete GoHighLevel build designed to turn a visitor into a booked consultation without friction.</p>
         </div>
         <div class="case-preview">
-          <img src="case-assets/ss-workflows-list.png" alt="GoHighLevel workflow overview for the Smile Society build" loading="lazy">
+          <img src="case-assets/ss-workflows-list.jpg" alt="GoHighLevel workflow overview for the Smile Society build" width="1096" height="569" loading="lazy">
           <div class="case-preview-copy">
             <span class="lbl">What this system does</span>
             <ul>
