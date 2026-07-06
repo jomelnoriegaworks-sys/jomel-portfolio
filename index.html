@@ -817,12 +817,55 @@
     background:#000;
     border:1px solid var(--line);
   }
-  .case-video .video-frame iframe{
+  .case-video .video-frame iframe,
+  .case-video .video-frame video{
     position:absolute;
     inset:0;
     width:100%;
     height:100%;
     border:0;
+    background:#000;
+  }
+  .case-video .video-facade{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(232,112,42,0.18), transparent 45%),
+      linear-gradient(160deg, #131a24, #0b0f16);
+    border:0;
+    cursor:pointer;
+    color:var(--paper);
+    padding:0;
+  }
+  .case-video .video-facade .play-circle{
+    width:64px;
+    height:64px;
+    border-radius:50%;
+    background:var(--coral);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 12px 40px rgba(224,120,86,0.45);
+    transition:transform .2s ease;
+  }
+  .case-video .video-facade:hover .play-circle,
+  .case-video .video-facade:focus-visible .play-circle{transform:scale(1.08);}
+  .case-video .video-facade:focus-visible{outline:2px solid var(--coral); outline-offset:-2px;}
+  .case-video .video-facade svg{width:22px;height:22px;fill:#10151d;margin-left:3px;}
+  .case-video .video-facade .fc-title{font-family:'General Sans', sans-serif;font-weight:600;font-size:17px;letter-spacing:-0.01em;}
+  .case-video .video-facade .fc-sub{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--paper-faint);
   }
   .case-video .lbl{
     font-family:'Manrope', sans-serif;
@@ -1343,7 +1386,11 @@
             <li>The native GHL calendar that books and triggers follow-up automatically</li>
           </ul>
           <div class="video-frame">
-            <iframe src="https://kommodo.ai/embed/recordings/WyqJYkCjrR0eNayOib9e" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Smile Society funnel walkthrough"></iframe>
+            <button class="video-facade" type="button" data-src-desktop="case-assets/walkthrough-1080.mp4" data-src-mobile="case-assets/walkthrough-720.mp4" data-poster="case-assets/walkthrough-poster.jpg" data-title="Smile Society funnel walkthrough" aria-label="Play the Smile Society funnel walkthrough video">
+              <span class="play-circle"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+              <span class="fc-title">Play the walkthrough</span>
+              <span class="fc-sub">Smile Society &middot; 7 min</span>
+            </button>
           </div>
         </div>
         <div class="case-body">
@@ -1769,6 +1816,22 @@
 </script>
 
 <script src="workflows.js"></script>
+<script>
+(function(){
+  document.querySelectorAll('.video-facade').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var video = document.createElement('video');
+      video.src = window.matchMedia('(max-width: 900px)').matches ? btn.dataset.srcMobile : btn.dataset.srcDesktop;
+      video.poster = btn.dataset.poster;
+      video.controls = true;
+      video.autoplay = true;
+      video.playsInline = true;
+      video.title = btn.dataset.title;
+      btn.parentNode.replaceChild(video, btn);
+    }, {once:true});
+  });
+})();
+</script>
 <script>
 (function(){
   var f = document.getElementById('pbForm');
