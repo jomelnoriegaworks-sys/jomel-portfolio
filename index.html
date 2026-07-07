@@ -570,11 +570,92 @@
     margin-bottom:16px;
   }
   .about-media img{
-    width:140px;
-    height:140px;
+    width:200px;
+    height:200px;
     border-radius:18px;
     object-fit:cover;
     border:1px solid var(--line);
+    box-shadow:0 18px 50px rgba(0,0,0,0.35);
+  }
+  .cred-strip{
+    margin-top:26px;
+    padding-top:22px;
+    border-top:1px solid var(--line);
+  }
+  .cred-strip .lbl{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--paper-faint);
+    display:block;
+    margin-bottom:14px;
+  }
+  .cred-row{
+    display:flex;
+    align-items:stretch;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .cred-item{
+    display:flex;
+    align-items:center;
+    gap:26px;
+    background:rgba(255,255,255,0.03);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:20px 26px 20px 20px;
+    flex:1 1 480px;
+  }
+  .cred-item img{
+    width:200px;
+    max-width:42%;
+    height:auto;
+    border-radius:14px;
+    border:1px solid var(--line-strong);
+    cursor:zoom-in;
+    box-shadow:0 18px 50px rgba(0,0,0,0.45);
+    flex-shrink:0;
+  }
+  .cred-item .t{
+    font-family:'General Sans', sans-serif;
+    font-size:19px;
+    font-weight:600;
+    line-height:1.3;
+    letter-spacing:-0.01em;
+  }
+  .cred-item .s{
+    font-size:13.5px;
+    color:var(--paper-faint);
+    margin-top:8px;
+    line-height:1.6;
+  }
+  .cred-item .s a{color:var(--coral); text-decoration:none; font-weight:600;}
+  .cred-item .s a:hover{text-decoration:underline;}
+  .cred-chip{
+    display:inline-flex;
+    align-items:center;
+    align-self:center;
+    gap:8px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--paper-faint);
+    border:1px dashed var(--line-strong);
+    border-radius:999px;
+    padding:8px 16px;
+  }
+  .cred-chip .dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--teal);
+    box-shadow:0 0 6px rgba(232,112,42,.7);
+  }
+  @media (max-width:560px){
+    .cred-item{flex-direction:column; align-items:flex-start;}
+    .cred-item img{width:200px; max-width:100%;}
   }
   .about-name{
     font-family:'General Sans', sans-serif;
@@ -1523,7 +1604,7 @@
       </div>
       <div class="about-card">
         <div class="about-media">
-          <img src="jomel-headshot.png" alt="Jomel Noriega, GoHighLevel Automation Specialist" width="140" height="140" loading="lazy">
+          <img src="jomel-headshot.png" alt="Jomel Noriega, GoHighLevel Automation Specialist" width="200" height="200" loading="lazy">
           <div>
             <div class="about-name">Jomel Noriega</div>
             <div class="about-role">GoHighLevel CRM & Automation Specialist</div>
@@ -1548,6 +1629,20 @@
               <h3>Reliable by design</h3>
               <p>Each workflow is tested end to end before launch so it performs the way real customers will use it.</p>
             </div>
+          </div>
+        </div>
+
+        <div class="cred-strip">
+          <span class="lbl">Credentials &amp; training</span>
+          <div class="cred-row">
+            <div class="cred-item">
+              <img src="case-assets/hla-badge.jpg" data-full="case-assets/hla-badge-full.jpg" alt="HLA Automation Builder badge awarded to Jomel Noriega — click to enlarge" width="200" height="250" loading="lazy">
+              <div>
+                <div class="t">HLA Automation Builder</div>
+                <div class="s">Built a complete CRM system in HighLevel &middot; validated by Jay-cee Tan &middot; <a href="https://www.facebook.com/hlaccelerator" target="_blank" rel="noopener">Issued by HL Accelerator &rarr;</a></div>
+              </div>
+            </div>
+            <span class="cred-chip"><span class="dot"></span> n8n certification &middot; training in progress</span>
           </div>
         </div>
       </div>
@@ -1864,26 +1959,25 @@
 <script src="workflows.js"></script>
 <script>
 (function(){
-  var img = document.querySelector('.case-preview img');
-  if(!img) return;
-  img.setAttribute('tabindex','0');
-  img.setAttribute('role','button');
-  img.setAttribute('aria-label','Enlarge the workflow overview screenshot');
-  function open(){
-    var ov = document.createElement('div');
-    ov.className = 'img-lightbox';
-    var big = document.createElement('img');
-    big.src = img.dataset.full || img.currentSrc;
-    big.alt = img.alt;
-    ov.appendChild(big);
-    function close(){ ov.remove(); document.removeEventListener('keydown', esc); img.focus(); }
-    function esc(e){ if(e.key === 'Escape') close(); }
-    ov.addEventListener('click', close);
-    document.addEventListener('keydown', esc);
-    document.body.appendChild(ov);
-  }
-  img.addEventListener('click', open);
-  img.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); open(); } });
+  document.querySelectorAll('.case-preview img, .cred-item img').forEach(function(img){
+    img.setAttribute('tabindex','0');
+    img.setAttribute('role','button');
+    function open(){
+      var ov = document.createElement('div');
+      ov.className = 'img-lightbox';
+      var big = document.createElement('img');
+      big.src = img.dataset.full || img.currentSrc;
+      big.alt = img.alt;
+      ov.appendChild(big);
+      function close(){ ov.remove(); document.removeEventListener('keydown', esc); img.focus(); }
+      function esc(e){ if(e.key === 'Escape') close(); }
+      ov.addEventListener('click', close);
+      document.addEventListener('keydown', esc);
+      document.body.appendChild(ov);
+    }
+    img.addEventListener('click', open);
+    img.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); open(); } });
+  });
 })();
 (function(){
   document.querySelectorAll('.video-facade').forEach(function(btn){
