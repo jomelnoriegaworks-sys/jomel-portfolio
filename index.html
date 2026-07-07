@@ -498,6 +498,29 @@
     border-radius:16px;
     border:1px solid var(--line);
     background:#fff;
+    cursor:zoom-in;
+  }
+  .img-lightbox{
+    position:fixed;
+    inset:0;
+    z-index:200;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:4vw;
+    background:rgba(8,11,16,0.92);
+    backdrop-filter:blur(6px);
+    cursor:zoom-out;
+  }
+  .img-lightbox img{
+    max-width:100%;
+    max-height:100%;
+    width:auto;
+    height:auto;
+    border-radius:12px;
+    border:1px solid var(--line-strong);
+    box-shadow:var(--shadow);
+    background:#fff;
   }
   .case-preview-copy{
     border:1px solid var(--line);
@@ -1367,7 +1390,7 @@
           <p class="tagline">A complete GoHighLevel build designed to turn a visitor into a booked consultation without friction.</p>
         </div>
         <div class="case-preview">
-          <img src="case-assets/ss-workflows-list.png" alt="GoHighLevel workflow overview for the Smile Society build" width="1302" height="676" loading="lazy">
+          <img src="case-assets/ss-workflows-list-600.png" srcset="case-assets/ss-workflows-list-600.png 600w, case-assets/ss-workflows-list-1200.png 1200w" sizes="(max-width:760px) 100vw, 584px" data-full="case-assets/ss-workflows-list.png" alt="GoHighLevel workflow overview for the Smile Society build" width="1302" height="676" loading="lazy">
           <div class="case-preview-copy">
             <span class="lbl">What this system does</span>
             <ul>
@@ -1817,6 +1840,28 @@
 
 <script src="workflows.js"></script>
 <script>
+(function(){
+  var img = document.querySelector('.case-preview img');
+  if(!img) return;
+  img.setAttribute('tabindex','0');
+  img.setAttribute('role','button');
+  img.setAttribute('aria-label','Enlarge the workflow overview screenshot');
+  function open(){
+    var ov = document.createElement('div');
+    ov.className = 'img-lightbox';
+    var big = document.createElement('img');
+    big.src = img.dataset.full || img.currentSrc;
+    big.alt = img.alt;
+    ov.appendChild(big);
+    function close(){ ov.remove(); document.removeEventListener('keydown', esc); img.focus(); }
+    function esc(e){ if(e.key === 'Escape') close(); }
+    ov.addEventListener('click', close);
+    document.addEventListener('keydown', esc);
+    document.body.appendChild(ov);
+  }
+  img.addEventListener('click', open);
+  img.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); open(); } });
+})();
 (function(){
   document.querySelectorAll('.video-facade').forEach(function(btn){
     btn.addEventListener('click', function(){
