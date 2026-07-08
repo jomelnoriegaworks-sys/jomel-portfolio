@@ -1131,7 +1131,8 @@
     .marquee-track{animation:none;}
   }
 </style>
-<link rel="stylesheet" href="chatbot.css">
+<link rel="stylesheet" href="chatbot.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="chatbot.css"></noscript>
 </head>
 <body>
 <a class="skip-link" href="#top">Skip to content</a>
@@ -2020,6 +2021,6 @@
     </div>
 
 </div>
-<script src="chatbot.js"></script>
+<script src="chatbot.js" defer></script>
 </body>
 </html>
