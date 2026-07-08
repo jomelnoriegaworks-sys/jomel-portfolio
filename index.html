@@ -1010,23 +1010,22 @@
   .marquee-track{
     display:flex;
     width:max-content;
-    animation:marquee 60s linear infinite;
+    animation:marquee 75s linear infinite;
   }
   .marquee:hover .marquee-track{animation-play-state:paused;}
   @keyframes marquee{to{transform:translateX(-50%);}}
-  .marquee-group{display:flex; gap:14px; padding-right:14px;}
+  .marquee-group{display:flex; gap:26px; padding-right:26px;}
   .stack-item{
-    display:inline-flex; align-items:center; gap:10px;
-    padding:11px 20px;
-    border:1px solid var(--line-strong);
+    display:inline-flex; align-items:center; gap:12px;
+    padding:14px 26px;
+    border:none;
     border-radius:999px;
     background:linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015));
     box-shadow:inset 0 1px 0 rgba(255,255,255,0.06), 0 4px 16px rgba(0,0,0,0.35);
     white-space:nowrap;
-    transition:border-color .2s ease, background .2s ease, box-shadow .2s ease;
+    transition:background .2s ease, box-shadow .2s ease;
   }
   .stack-item:hover{
-    border-color:rgba(var(--brand-glow),0.55);
     background:linear-gradient(180deg, rgba(var(--brand-glow),0.1), rgba(var(--brand-glow),0.04));
     box-shadow:
       inset 0 1px 0 rgba(255,255,255,0.08),
@@ -1034,13 +1033,13 @@
       0 0 44px rgba(var(--brand-glow),0.12);
   }
   .stack-item img{
-    width:18px; height:18px; display:block;
-    border-radius:4px;
+    width:28px; height:28px; display:block;
+    border-radius:6px;
     opacity:.95;
     transition:opacity .2s ease;
   }
   .stack-item:hover img{opacity:1;}
-  .stack-item span{font-size:13px; color:var(--text-dim); font-weight:500;}
+  .stack-item span{font-size:14px; color:var(--text-dim); font-weight:500;}
 
   /* ===== Pointer-tracking border glow (vanilla port of GlowingEffect) ===== */
   .problem-item, .hero-stat, .wf-card, .case-card, .cost-card,
