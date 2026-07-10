@@ -1861,7 +1861,7 @@
     ['Stripe', 'stack-icons/stripe.svg'],
     ['PayPal', 'stack-icons/paypal.svg'],
     ['Zendesk', 'stack-icons/zendesk.svg'],
-    ['Tidio', 'stack-icons/tidio.png'],
+    ['Tidio', 'stack-icons/tidio.png', true],
     ['Twilio', 'stack-icons/twilio.svg'],
     ['LeadConnector', 'stack-icons/leadconnectorhq.png']
   ];
@@ -1877,6 +1877,7 @@
       img.alt = '';
       img.loading = 'lazy';
       img.width = 38; img.height = 38;
+      if(t[2]) img.style.filter = 'brightness(0) invert(1)';
       img.addEventListener('error', function(){ img.remove(); });
       var name = document.createElement('span');
       name.textContent = t[0];
