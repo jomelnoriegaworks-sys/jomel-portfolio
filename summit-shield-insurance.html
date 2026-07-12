@@ -204,6 +204,9 @@
     .btn-primary:hover{box-shadow:inset 0 1px 0 rgba(255,255,255,0.24);}
   }
   @media (max-width:640px){ .topbar .btn{display:none;} }
+  @media (hover:none), (pointer:coarse){
+    .glow-border{display:none!important;}
+  }
   @media (max-width:640px){
     .section-pad{padding:48px 0;}
     .site-shell>section{contain-intrinsic-size:auto 900px;}

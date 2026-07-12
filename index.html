@@ -1161,6 +1161,9 @@
     .stack-item{padding:9px 16px;}
     .stack-item span{font-size:12px;}
   }
+  @media (hover:none), (pointer:coarse){
+    .glow-border{display:none!important;}
+  }
   @media (max-width:520px){
     .cost-row{flex-direction:column; align-items:flex-start; gap:5px;}
     .eyebrow{font-size:10px; letter-spacing:.12em; padding:6px 12px;}
@@ -1977,6 +1980,7 @@
 // A bright gradient segment travels around each card's border toward the cursor.
 (function(){
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if(window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
   var SEL = '.problem-item, .hero-stat, .wf-card, .case-card, .cost-card, ' +
             '.about-card, .testi-feat, .testi-mini, .cred-item, .playbook-band';
   var PROXIMITY = 72;      // px outside the card that still activates it
@@ -2068,6 +2072,10 @@
   document.querySelectorAll('.video-facade').forEach(function(btn){
     btn.addEventListener('click', function(){
       if(btn.dataset.embed){
+        if(window.matchMedia('(max-width: 900px), (pointer: coarse)').matches){
+          window.location.assign(btn.dataset.embed);
+          return;
+        }
         var iframe = document.createElement('iframe');
         iframe.src = btn.dataset.embed;
         iframe.title = btn.dataset.title;
@@ -2084,6 +2092,10 @@
       video.playsInline = true;
       video.title = btn.dataset.title;
       btn.parentNode.replaceChild(video, btn);
+      var playback = video.play();
+      if(playback && typeof playback.catch === 'function'){
+        playback.catch(function(){ video.controls = true; });
+      }
     }, {once:true});
   });
 })();
