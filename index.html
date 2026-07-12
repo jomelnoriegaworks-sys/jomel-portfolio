@@ -564,7 +564,7 @@
     gap:22px;
   }
   .case-preview img{
-    width:100%; display:block;
+    width:100%; height:auto; display:block;
     border-radius:14px;
     border:1px solid var(--line);
     background:#fff;
@@ -575,6 +575,9 @@
     object-fit:contain;
   }
   .case-shot{position:relative;}
+  /* taller-than-standard screenshots: shrink on desktop so card height matches the 1240x461 standard */
+  .case-shot.shot-tall{max-width:82%;margin:0 auto;}
+  @media (max-width:760px){ .case-shot.shot-tall{max-width:100%;} }
   .zoom-hint{
     position:absolute; right:12px; bottom:12px;
     display:inline-flex; align-items:center; gap:7px;
@@ -1452,8 +1455,8 @@
           <p class="tagline">A complete GoHighLevel demo connecting inquiry, consultation, client information, proposal, application, and policy onboarding.</p>
         </div>
         <div class="case-preview">
-          <div class="case-shot">
-            <img src="case-assets/summit-workflows-list-600.png" srcset="case-assets/summit-workflows-list-600.png 600w, case-assets/summit-workflows-list-730.png 730w, case-assets/summit-workflows-list-1200.png 1200w, case-assets/summit-workflows-list.png 1566w" sizes="(max-width:760px) 100vw, 960px" data-full="case-assets/summit-workflows-list.png" alt="GoHighLevel workflow overview showing six published Summit Shield Insurance workflows" width="1566" height="711" loading="lazy" decoding="async">
+          <div class="case-shot shot-tall">
+            <img src="case-assets/summit-workflows-list-600.png" srcset="case-assets/summit-workflows-list-600.png 600w, case-assets/summit-workflows-list-730.png 730w, case-assets/summit-workflows-list-1200.png 1200w, case-assets/summit-workflows-list.png 1566w" sizes="(max-width:760px) 100vw, 790px" data-full="case-assets/summit-workflows-list.png" alt="GoHighLevel workflow overview showing six published Summit Shield Insurance workflows" width="1566" height="711" loading="lazy" decoding="async">
             <span class="zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>Click for full view</span>
           </div>
           <div class="case-preview-copy">
