@@ -536,6 +536,11 @@
     background:var(--surface);
     overflow:hidden;
   }
+  .case-card + .case-card{margin-top:28px;}
+  .case-card[data-case="summit-shield"]{
+    content-visibility:auto;
+    contain-intrinsic-size:auto 1500px;
+  }
   .case-top{padding:40px 40px 0;}
   .case-badge{
     display:inline-block;
@@ -564,6 +569,10 @@
     border:1px solid var(--line);
     background:#fff;
     cursor:zoom-in;
+  }
+  .case-preview img.preview-standard{
+    aspect-ratio:1240 / 461;
+    object-fit:contain;
   }
   .case-shot{position:relative;}
   .zoom-hint{
@@ -665,6 +674,8 @@
   .case-link:hover{border-color:var(--text);}
   .case-link svg{width:14px; height:14px;}
   .case-note{font-size:13px; color:var(--muted); font-style:italic;}
+  .case-actions{display:flex;align-items:flex-start;flex-wrap:wrap;gap:8px 22px;}
+  .case-actions .case-link{margin-right:0!important;min-width:0;}
   .live-dot{
     display:inline-block; width:7px; height:7px; border-radius:50%;
     background:var(--ok); box-shadow:0 0 6px rgba(63,174,126,.8);
@@ -694,6 +705,9 @@
     .case-preview{padding:0 24px;}
     .case-video{margin:24px 24px 8px;}
     .case-body{padding:0 24px 28px;}
+    .case-card[data-case="summit-shield"]{contain-intrinsic-size:auto 2000px;}
+    .case-actions{display:grid;gap:12px;}
+    .case-actions .case-link{width:fit-content;max-width:100%;white-space:normal;}
   }
 
   /* ===== Process steps ===== */
@@ -1218,7 +1232,7 @@
       <p class="sub">I help service-based businesses turn GoHighLevel into a reliable growth engine — from lead follow-up and appointment booking to customer communication and CRM workflows.</p>
       <div class="hero-ctas">
         <a href="#contact" class="btn btn-primary">Book a discovery call →</a>
-        <a href="#case-study" class="btn btn-ghost">View the dental clinic case study</a>
+        <a href="#case-study" class="btn btn-ghost">View the case studies</a>
       </div>
 
       <div class="trust-row">
@@ -1357,8 +1371,8 @@
     <div class="wrap reveal">
       <div class="sec-mark" aria-hidden="true"><span class="num">/03</span><span class="tag">proof of work</span><span class="rule"></span></div>
       <div class="sec-head">
-        <h2>A premium case study built around a real <span class="serif">customer journey.</span></h2>
-        <p>The dental clinic build shows how I approach a full GoHighLevel system — from first impression to booking, reminders, and follow-up.</p>
+        <h2>Case studies built around the complete <span class="serif">customer journey.</span></h2>
+        <p>See how I connect websites, pipelines, CRM records, reminders, and follow-up into one clear operating system.</p>
       </div>
 
       <div class="case-card">
@@ -1424,6 +1438,68 @@
               See it live <span aria-hidden="true" class="live-dot"></span><span class="live-lbl">LIVE</span> &middot; smilesociety.online
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
             </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-card" data-case="summit-shield">
+        <div class="case-top">
+          <span class="case-badge">New case study</span>
+          <h3>Summit Shield Insurance — lead-to-policy CRM</h3>
+          <p class="tagline">A complete GoHighLevel demo connecting inquiry, consultation, client information, proposal, application, and policy onboarding.</p>
+        </div>
+        <div class="case-preview">
+          <div class="case-shot">
+            <img class="preview-standard" src="case-assets/summit-workflows-list-600.png" srcset="case-assets/summit-workflows-list-600.png 600w, case-assets/summit-workflows-list.png 1566w" sizes="(max-width:760px) calc(100vw - 96px), 964px" data-full="case-assets/summit-workflows-list.png" alt="GoHighLevel workflow overview showing six published Summit Shield Insurance workflows" width="1566" height="711" loading="lazy" decoding="async">
+            <span class="zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>Click for full view</span>
+          </div>
+          <div class="case-preview-copy">
+            <span class="lbl">What this system does</span>
+            <ul>
+              <li>Keeps every insurance lead visible through five core pipeline stages.</li>
+              <li>Coordinates confirmations, reminders, tags, internal alerts, and tasks.</li>
+              <li>Tracks submitted client information inside the Consultation Booked stage.</li>
+            </ul>
+            <a class="case-link" href="summit-shield-insurance.html">Explore the full case study →</a>
+          </div>
+        </div>
+        <div class="case-video">
+          <span class="lbl">Watch the build walkthrough</span>
+          <ul class="video-points">
+            <li>The insurance website and its path from visitor to consultation</li>
+            <li>The five-stage lead-to-policy pipeline inside GoHighLevel</li>
+            <li>Six workflows that automate follow-up and internal handoffs</li>
+          </ul>
+          <div class="video-frame">
+            <button class="video-facade" type="button" data-embed="https://kommodo.ai/recordings/R3rgIq0HZ1GgbAgAY9ZN?onlyRecording=1&amp;autoplay=1" data-title="Summit Shield Insurance CRM and automation walkthrough" aria-label="Play the Summit Shield Insurance walkthrough video">
+              <span class="play-circle"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+              <span class="fc-title">Play the walkthrough</span>
+              <span class="fc-sub">Summit Shield &middot; CRM demo</span>
+            </button>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-block">
+            <span class="lbl">The brief</span>
+            <p>Insurance sales involve several handoffs where slow follow-up or missing context can stall an otherwise qualified opportunity. This demo puts that journey into one visible CRM process.</p>
+          </div>
+          <div class="case-block">
+            <span class="lbl">What I built</span>
+            <ul>
+              <li>A five-stage pipeline from New Lead through Policy Issued.</li>
+              <li>Six published workflows for lifecycle tags, reminders, notifications, and tasks.</li>
+              <li>A dedicated client-information workflow that supports the Consultation Booked stage.</li>
+              <li>Proposal, application, and policy onboarding automations for clean team handoffs.</li>
+            </ul>
+          </div>
+          <div class="case-block">
+            <span class="lbl">The result</span>
+            <p>A working spec system that demonstrates how an insurance team could manage the full journey without relying on disconnected inboxes or memory.</p>
+            <p class="case-note">Sample project — built to show the method, not a paid client result.</p>
+            <div class="case-actions">
+              <a class="case-link" href="summit-shield-insurance.html">Read the full case study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+              <a class="case-link" href="https://summitshield.online/" target="_blank" rel="noopener">See it live <span aria-hidden="true" class="live-dot"></span><span class="live-lbl">LIVE</span> &middot; summitshield.online <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+            </div>
           </div>
         </div>
       </div>
@@ -1991,6 +2067,15 @@
 (function(){
   document.querySelectorAll('.video-facade').forEach(function(btn){
     btn.addEventListener('click', function(){
+      if(btn.dataset.embed){
+        var iframe = document.createElement('iframe');
+        iframe.src = btn.dataset.embed;
+        iframe.title = btn.dataset.title;
+        iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+        iframe.allowFullscreen = true;
+        btn.parentNode.replaceChild(iframe, btn);
+        return;
+      }
       var video = document.createElement('video');
       video.src = window.matchMedia('(max-width: 900px)').matches ? btn.dataset.srcMobile : btn.dataset.srcDesktop;
       video.poster = btn.dataset.poster;
@@ -2042,7 +2127,7 @@
 
         <div class="bot-message">
 
-            <p>What can I help you with? Most people ask about pricing, the dental clinic project, or what I could automate in their business.</p>
+            <p>What can I help you with? Most people ask about pricing, the case studies, or what I could automate in their business.</p>
 
 
         </div>
