@@ -771,6 +771,85 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .portfolio-doc-close{width:44px;height:44px;}
   }
 
+  /* ===== Analytics implementation (GA4 + GTM) ===== */
+  .ga-grid{display:grid; gap:16px;}
+  .ga-card{
+    border:1px solid var(--line);
+    border-radius:24px;
+    background:var(--surface);
+    position:relative;
+    transition:border-color .25s ease;
+  }
+  .ga-card:hover{border-color:var(--line-strong);}
+  .ga-pad{padding:34px;}
+  .ga-card h3{font-size:21px; letter-spacing:-0.015em; margin-bottom:10px;}
+  .ga-desc{margin:0 0 22px; color:var(--text-dim); font-size:15px; max-width:760px;}
+  .ga-shot-card{content-visibility:auto; contain-intrinsic-size:auto 750px;}
+  .ga-shot{margin:0;}
+  .ga-shot-frame{position:relative;}
+  .ga-shot img{
+    width:100%; height:auto; display:block;
+    border-radius:14px;
+    border:1px solid var(--line);
+    background:#fff;
+    cursor:zoom-in;
+  }
+  .ga-shot figcaption{margin-top:13px; font-size:13px; color:var(--muted); font-style:italic;}
+  /* GA4 shot letterboxed to the GTM shot's ratio so both frames match */
+  .ga-shot--uniform img{aspect-ratio:1402 / 584; object-fit:contain;}
+  @media (max-width:760px){
+    .ga-shot--uniform img{aspect-ratio:auto;}
+  }
+  .ga-lbl{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10.5px; color:var(--muted);
+    text-transform:uppercase; letter-spacing:.16em;
+    display:block; margin-bottom:13px;
+  }
+  .ga-summary{overflow:hidden;}
+  .ga-meta{display:grid; grid-template-columns:1fr 1fr 1.35fr; gap:1px; background:var(--line);}
+  .ga-meta-item{background:var(--panel); padding:28px 30px;}
+  .ga-status{margin:0; display:flex; align-items:center; font-size:17px; font-weight:600; color:var(--text);}
+  .ga-status .live-dot{margin:0 10px 0 0;}
+  .ga-status-sub{
+    display:block; margin-top:9px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px; letter-spacing:.06em; color:var(--text-faint);
+  }
+  .ga-tools{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:9px;}
+  .ga-tools li{color:var(--text-dim); font-size:14.5px;}
+  .ga-checks{margin:0; padding:0; list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:9px 18px;}
+  .ga-checks li{color:var(--text-dim); font-size:14.5px; display:flex; gap:9px; align-items:baseline;}
+  .ga-checks .tick{color:var(--ok); font-weight:600; flex-shrink:0;}
+  .ga-duo{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  .ga-badge{
+    display:inline-block;
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px; font-weight:400;
+    text-transform:uppercase; letter-spacing:.14em;
+    color:var(--text-dim);
+    border:1px solid var(--line-strong);
+    background:rgba(255,255,255,0.04);
+    padding:4px 10px; border-radius:999px;
+    margin-left:10px; vertical-align:2px; white-space:nowrap;
+  }
+  .ga-roadmap-list{margin:14px 0 0; padding:0; list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:9px 18px;}
+  .ga-roadmap-list li{color:var(--text-faint); font-size:14.5px; display:flex; gap:9px; align-items:baseline;}
+  .ga-roadmap-list .mark{color:var(--text-faint); flex-shrink:0;}
+  @media (max-width:900px){
+    .ga-meta{grid-template-columns:1fr 1fr;}
+    .ga-meta-item.ga-track{grid-column:1 / -1;}
+    .ga-duo{grid-template-columns:1fr;}
+  }
+  @media (max-width:760px){
+    .ga-pad{padding:24px;}
+    .ga-meta-item{padding:22px 24px;}
+  }
+  @media (max-width:560px){
+    .ga-checks, .ga-roadmap-list{grid-template-columns:1fr;}
+    .ga-card h3{font-size:19px;}
+  }
+
   /* ===== Process steps ===== */
   .steps{border-top:1px solid var(--line);}
   .step{
@@ -1237,16 +1316,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .js .hero .wrap > :nth-child(7){animation-delay:.64s;}
 
   /* cards stagger in one-by-one when their section reveals */
-  .js .reveal:not(.in) :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item){opacity:0;}
-  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item){
+  .js .reveal:not(.in) :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item,.ga-card){opacity:0;}
+  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item,.ga-card){
     animation:rise-in .6s cubic-bezier(.22,.65,.3,1) backwards;
   }
-  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item):nth-child(1){animation-delay:.1s;}
-  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item):nth-child(2){animation-delay:.19s;}
-  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item):nth-child(3){animation-delay:.28s;}
-  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item):nth-child(4){animation-delay:.37s;}
-  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item):nth-child(5){animation-delay:.46s;}
-  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item):nth-child(6){animation-delay:.55s;}
+  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item,.ga-card):nth-child(1){animation-delay:.1s;}
+  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item,.ga-card):nth-child(2){animation-delay:.19s;}
+  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item,.ga-card):nth-child(3){animation-delay:.28s;}
+  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item,.ga-card):nth-child(4){animation-delay:.37s;}
+  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item,.ga-card):nth-child(5){animation-delay:.46s;}
+  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item,.ga-card):nth-child(6){animation-delay:.55s;}
 
   /* section rule draws itself across when the section reveals */
   .js .reveal .sec-mark .rule{transform:scaleX(0); transform-origin:0 50%; transition:transform 1s cubic-bezier(.22,.65,.3,1) .25s;}
@@ -1311,8 +1390,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .marquee-track{animation:none;}
     .js header{animation:none;}
     .js .hero .wrap > *{animation:none;}
-    .js .reveal:not(.in) :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item){opacity:1;}
-    .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item){animation:none;}
+    .js .reveal:not(.in) :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item,.ga-card){opacity:1;}
+    .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item,.ga-card){animation:none;}
     .js .reveal .sec-mark .rule{transform:none; transition:none;}
     .hero-stat:hover,.cred-item:hover,.testi-mini:hover{transform:none;}
     .btn-primary::after{display:none;}
@@ -1674,10 +1753,95 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <iframe class="portfolio-doc-frame" title="Summit Shield CRM Implementation Documentation PDF" loading="lazy" data-src="Summit_Shield_Deliverables/Summit_Shield_CRM_Implementation_Documentation.pdf"></iframe>
   </dialog>
 
+  <!-- ============ ANALYTICS (GA4 + GTM) ============ -->
+  <section class="section-pad" id="analytics" style="padding-top:0;">
+    <div class="wrap reveal">
+      <div class="sec-mark" aria-hidden="true"><span class="num">/04</span><span class="tag">analytics implementation</span><span class="rule"></span></div>
+      <div class="sec-head">
+        <h2>Google Analytics &amp; <span class="serif">Tag Manager.</span></h2>
+        <p>Implemented Google Analytics 4 and Google Tag Manager on this portfolio website to establish a foundation for website analytics, monitor visitor behavior, and verify analytics tracking.</p>
+      </div>
+
+      <div class="ga-grid">
+        <article class="ga-card ga-pad ga-shot-card">
+          <h3>Google Tag Manager</h3>
+          <p class="ga-desc">Configured Google Tag Manager to centrally manage analytics tags without modifying website code. This allows future tracking updates to be deployed efficiently while keeping the implementation organized and scalable.</p>
+          <figure class="ga-shot">
+            <div class="ga-shot-frame">
+              <img src="case-assets/gtm-workspace-600.png" srcset="case-assets/gtm-workspace-600.png 600w, case-assets/gtm-workspace-730.png 730w, case-assets/gtm-workspace-1200.png 1200w, case-assets/gtm-workspace.png 1402w" sizes="(max-width:760px) 100vw, 960px" data-full="case-assets/gtm-workspace.png" alt="Google Tag Manager workspace for the Jomel Portfolio Website container — the active Google Tag is connected to Google Analytics 4 with no pending changes and container quality rated Good" width="1402" height="584" loading="lazy" decoding="async">
+              <span class="zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>Click for full view</span>
+            </div>
+            <figcaption>Google Tag Manager workspace showing the active Google Tag connected to Google Analytics 4.</figcaption>
+          </figure>
+        </article>
+
+        <article class="ga-card ga-pad ga-shot-card">
+          <h3>Google Analytics 4</h3>
+          <p class="ga-desc">Connected Google Analytics 4 to collect live website traffic, page views, user engagement, and enhanced measurement events. The implementation was validated using realtime reporting after deployment.</p>
+          <figure class="ga-shot ga-shot--uniform">
+            <div class="ga-shot-frame">
+              <img src="case-assets/ga4-realtime-600.png" srcset="case-assets/ga4-realtime-600.png 600w, case-assets/ga4-realtime-730.png 730w, case-assets/ga4-realtime-1200.png 1200w, case-assets/ga4-realtime.png 1237w" sizes="(max-width:760px) 100vw, 960px" data-full="case-assets/ga4-realtime.png" alt="Google Analytics 4 Realtime overview with active users on a map, views by page title, and event counts for page_view, first_visit, session_start, scroll, and user_engagement" width="1237" height="828" loading="lazy" decoding="async">
+              <span class="zoom-hint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>Click for full view</span>
+            </div>
+            <figcaption>Realtime overview showing live visitor activity and automatically tracked events.</figcaption>
+          </figure>
+        </article>
+
+        <article class="ga-card ga-summary" aria-label="Implementation summary">
+          <div class="ga-meta">
+            <div class="ga-meta-item">
+              <span class="ga-lbl">Implementation status</span>
+              <p class="ga-status"><span class="live-dot" aria-hidden="true"></span>Live</p>
+              <span class="ga-status-sub">jomelnoriega.com</span>
+            </div>
+            <div class="ga-meta-item">
+              <span class="ga-lbl">Tools</span>
+              <ul class="ga-tools">
+                <li>Google Analytics 4</li>
+                <li>Google Tag Manager</li>
+                <li>GitHub</li>
+                <li>Netlify</li>
+              </ul>
+            </div>
+            <div class="ga-meta-item ga-track">
+              <span class="ga-lbl">Current tracking</span>
+              <ul class="ga-checks">
+                <li><span class="tick" aria-hidden="true">&#10003;</span>Page Views</li>
+                <li><span class="tick" aria-hidden="true">&#10003;</span>First Visit</li>
+                <li><span class="tick" aria-hidden="true">&#10003;</span>Session Start</li>
+                <li><span class="tick" aria-hidden="true">&#10003;</span>Scroll Tracking</li>
+                <li><span class="tick" aria-hidden="true">&#10003;</span>User Engagement</li>
+                <li><span class="tick" aria-hidden="true">&#10003;</span>Realtime Visitor Monitoring</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <div class="ga-duo">
+          <article class="ga-card ga-pad">
+            <h3>Why this matters</h3>
+            <p class="ga-desc" style="margin-bottom:0;">Implementing Google Analytics 4 and Google Tag Manager provides visibility into website activity and establishes the foundation for future event and conversion tracking. This enables more informed decisions based on visitor behavior rather than assumptions.</p>
+          </article>
+          <article class="ga-card ga-pad">
+            <h3>Future tracking <span class="ga-badge">Next phase</span></h3>
+            <ul class="ga-roadmap-list">
+              <li><span class="mark" aria-hidden="true">&#9675;</span>Contact Form Submission</li>
+              <li><span class="mark" aria-hidden="true">&#9675;</span>Resume Download</li>
+              <li><span class="mark" aria-hidden="true">&#9675;</span>GitHub Clicks</li>
+              <li><span class="mark" aria-hidden="true">&#9675;</span>LinkedIn Clicks</li>
+              <li><span class="mark" aria-hidden="true">&#9675;</span>Portfolio Project Clicks</li>
+              <li><span class="mark" aria-hidden="true">&#9675;</span>Conversion Tracking</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ HOW IT WORKS ============ -->
   <section class="section-pad" id="how-it-works" style="padding-top:0;">
     <div class="wrap reveal">
-      <div class="sec-mark" aria-hidden="true"><span class="num">/04</span><span class="tag">how we work together</span><span class="rule"></span></div>
+      <div class="sec-mark" aria-hidden="true"><span class="num">/05</span><span class="tag">how we work together</span><span class="rule"></span></div>
       <div class="sec-head">
         <h2>A simple, <span class="serif">four-step process.</span> No surprises along the way.</h2>
       </div>
@@ -1717,7 +1881,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ============ WHY DIFFERENT ============ -->
   <section class="section-pad" id="why" style="padding-top:0;">
     <div class="wrap reveal">
-      <div class="sec-mark" aria-hidden="true"><span class="num">/05</span><span class="tag">what makes me different</span><span class="rule"></span></div>
+      <div class="sec-mark" aria-hidden="true"><span class="num">/06</span><span class="tag">what makes me different</span><span class="rule"></span></div>
       <div class="sec-head">
         <h2>Built around the <span class="serif">customer experience,</span> not just the workflow.</h2>
       </div>
@@ -1794,7 +1958,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ============ COST OF WAITING ============ -->
   <section class="section-pad" id="pricing" style="padding-top:0;">
     <div class="wrap reveal">
-      <div class="sec-mark" aria-hidden="true"><span class="num">/06</span><span class="tag">pricing, scoped honestly</span><span class="rule"></span></div>
+      <div class="sec-mark" aria-hidden="true"><span class="num">/07</span><span class="tag">pricing, scoped honestly</span><span class="rule"></span></div>
       <div class="sec-head">
         <h2>The real price isn't the build. It's leaving things <span class="serif">the way they are.</span></h2>
       </div>
@@ -1815,7 +1979,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ============ TESTIMONIALS ============ -->
   <section class="section-pad" id="results" style="padding-top:0;">
     <div class="wrap reveal">
-      <div class="sec-mark" aria-hidden="true"><span class="num">/07</span><span class="tag">what clients &amp; employers say</span><span class="rule"></span></div>
+      <div class="sec-mark" aria-hidden="true"><span class="num">/08</span><span class="tag">what clients &amp; employers say</span><span class="rule"></span></div>
       <div class="sec-head">
         <h2>In <span class="serif">their words,</span> not mine.</h2>
         <p>Don't take my word for it — <a class="testi-intro-link" href="https://www.upwork.com/freelancers/~0150ffd8bd7b5a6321" target="_blank" rel="noopener">read the verified reviews on my Upwork profile &rarr;</a></p>
@@ -1875,7 +2039,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- ============ FAQ ============ -->
   <section class="section-pad" id="faq" style="padding-top:0;">
     <div class="wrap reveal">
-      <div class="sec-mark" aria-hidden="true"><span class="num">/08</span><span class="tag">faqs</span><span class="rule"></span></div>
+      <div class="sec-mark" aria-hidden="true"><span class="num">/09</span><span class="tag">faqs</span><span class="rule"></span></div>
       <div class="sec-head">
         <h2><span class="serif">Low risk</span> on your side.</h2>
         <p>Here's how I keep this safe and simple for you.</p>
@@ -2156,7 +2320,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if(window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
   var SEL = '.problem-item, .hero-stat, .wf-card, .case-card, .case-docs, .cost-card, ' +
-            '.about-card, .testi-feat, .testi-mini, .cred-item, .playbook-band';
+            '.about-card, .testi-feat, .testi-mini, .cred-item, .playbook-band, .ga-card';
   var PROXIMITY = 72;      // px outside the card that still activates it
   var INACTIVE_ZONE = 0.55; // fraction of the card's center where the glow hides
   var cards = Array.prototype.slice.call(document.querySelectorAll(SEL));
@@ -2222,7 +2386,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </script>
 <script>
 (function(){
-  document.querySelectorAll('.case-preview img, .cred-item img').forEach(function(img){
+  document.querySelectorAll('.case-preview img, .cred-item img, .ga-shot img').forEach(function(img){
     img.setAttribute('tabindex','0');
     img.setAttribute('role','button');
     function open(){
