@@ -1106,6 +1106,50 @@
   .js .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
   .js .reveal.in{opacity:1; transform:translateY(0);}
 
+  /* ===== Motion layer (same system as the homepage) ===== */
+  @keyframes fade-in{
+    from{opacity:0;}
+    to{opacity:1;}
+  }
+  @keyframes rise-in{
+    from{opacity:0; transform:translateY(18px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  @keyframes btn-shine{
+    to{transform:translateX(340%) skewX(-18deg);}
+  }
+  /* nav fades in on load (opacity only — header is sticky) */
+  .js header{animation:fade-in .6s ease backwards;}
+  /* hero entrance cascade — eyebrow, headline, sub, CTAs */
+  .js .hero .wrap > *{animation:rise-in .7s cubic-bezier(.22,.65,.3,1) backwards;}
+  .js .hero .wrap > :nth-child(1){animation-delay:.05s;}
+  .js .hero .wrap > :nth-child(2){animation-delay:.14s;}
+  .js .hero .wrap > :nth-child(3){animation-delay:.23s;}
+  .js .hero .wrap > :nth-child(4){animation-delay:.32s;}
+  /* cards stagger in one-by-one when their section reveals */
+  .js .reveal:not(.in) :is(.problem-item,.step){opacity:0;}
+  .js .reveal.in :is(.problem-item,.step){animation:rise-in .6s cubic-bezier(.22,.65,.3,1) backwards;}
+  .js .reveal.in :is(.problem-item,.step):nth-child(1){animation-delay:.1s;}
+  .js .reveal.in :is(.problem-item,.step):nth-child(2){animation-delay:.19s;}
+  .js .reveal.in :is(.problem-item,.step):nth-child(3){animation-delay:.28s;}
+  .js .reveal.in :is(.problem-item,.step):nth-child(4){animation-delay:.37s;}
+  .js .reveal.in :is(.problem-item,.step):nth-child(5){animation-delay:.46s;}
+  .js .reveal.in :is(.problem-item,.step):nth-child(6){animation-delay:.55s;}
+  /* section rule draws itself across when the section reveals */
+  .js .reveal .sec-mark .rule{transform:scaleX(0); transform-origin:0 50%; transition:transform 1s cubic-bezier(.22,.65,.3,1) .25s;}
+  .js .reveal.in .sec-mark .rule{transform:scaleX(1);}
+  @media (hover:hover) and (pointer:fine){
+    /* light sweep across primary buttons on hover */
+    .btn-primary{position:relative; overflow:hidden;}
+    .btn-primary::after{
+      content:""; position:absolute; top:-2px; bottom:-2px; left:0; width:55%;
+      background:linear-gradient(105deg, transparent 15%, rgba(255,255,255,0.32) 50%, transparent 85%);
+      transform:translateX(-180%) skewX(-18deg);
+      pointer-events:none;
+    }
+    .btn-primary:hover::after{animation:btn-shine .65s ease .04s;}
+  }
+
   /* ===== Mobile refinements ===== */
   @media (max-width:760px){
     .section-pad{padding:88px 0;}
@@ -1142,6 +1186,12 @@
     .eshape{animation:none; transform:rotate(var(--r));}
     .hero-bg{animation:none;}
     .marquee-track{animation:none;}
+    .js header{animation:none;}
+    .js .hero .wrap > *{animation:none;}
+    .js .reveal:not(.in) :is(.problem-item,.step){opacity:1;}
+    .js .reveal.in :is(.problem-item,.step){animation:none;}
+    .js .reveal .sec-mark .rule{transform:none; transition:none;}
+    .btn-primary::after{display:none;}
   }
 </style>
 <link rel="stylesheet" href="chatbot.css">
@@ -1318,7 +1368,7 @@
 </main>
 
 <footer>
-  <div class="wrap">
+  <div class="wrap reveal">
     <div class="footer-grid">
       <div class="footer-col" style="max-width:280px;">
         <a href="index.html" class="logo" style="margin-bottom:14px;">

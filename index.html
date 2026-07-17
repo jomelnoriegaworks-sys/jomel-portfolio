@@ -1142,6 +1142,12 @@
   .js .reveal.in{opacity:1; transform:translateY(0);}
 
   /* ===== Motion layer ===== */
+  @keyframes fade-in{
+    from{opacity:0;}
+    to{opacity:1;}
+  }
+  /* nav fades in on load (opacity only — header is sticky) */
+  .js header{animation:fade-in .6s ease backwards;}
   @keyframes rise-in{
     from{opacity:0; transform:translateY(18px);}
     to{opacity:1; transform:translateY(0);}
@@ -1160,16 +1166,16 @@
   .js .hero .wrap > :nth-child(7){animation-delay:.64s;}
 
   /* cards stagger in one-by-one when their section reveals */
-  .js .reveal:not(.in) :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item){opacity:0;}
-  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item){
+  .js .reveal:not(.in) :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item){opacity:0;}
+  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item){
     animation:rise-in .6s cubic-bezier(.22,.65,.3,1) backwards;
   }
-  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item):nth-child(1){animation-delay:.1s;}
-  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item):nth-child(2){animation-delay:.19s;}
-  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item):nth-child(3){animation-delay:.28s;}
-  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item):nth-child(4){animation-delay:.37s;}
-  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item):nth-child(5){animation-delay:.46s;}
-  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item):nth-child(6){animation-delay:.55s;}
+  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item):nth-child(1){animation-delay:.1s;}
+  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item):nth-child(2){animation-delay:.19s;}
+  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item):nth-child(3){animation-delay:.28s;}
+  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item):nth-child(4){animation-delay:.37s;}
+  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item):nth-child(5){animation-delay:.46s;}
+  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item):nth-child(6){animation-delay:.55s;}
 
   /* section rule draws itself across when the section reveals */
   .js .reveal .sec-mark .rule{transform:scaleX(0); transform-origin:0 50%; transition:transform 1s cubic-bezier(.22,.65,.3,1) .25s;}
@@ -1232,9 +1238,10 @@
     .eshape{animation:none; transform:rotate(var(--r));}
     .hero-bg{animation:none;}
     .marquee-track{animation:none;}
+    .js header{animation:none;}
     .js .hero .wrap > *{animation:none;}
-    .js .reveal:not(.in) :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item){opacity:1;}
-    .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item){animation:none;}
+    .js .reveal:not(.in) :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item){opacity:1;}
+    .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item){animation:none;}
     .js .reveal .sec-mark .rule{transform:none; transition:none;}
     .hero-stat:hover,.cred-item:hover,.testi-mini:hover{transform:none;}
     .btn-primary::after{display:none;}
@@ -1375,7 +1382,7 @@
   </section>
 
   <!-- ============ TECH STACK ============ -->
-  <section class="stack-band" aria-label="Tech stack">
+  <section class="stack-band reveal" aria-label="Tech stack">
     <p class="stack-label">tech stack</p>
     <div class="marquee">
       <div class="marquee-track" id="stackTrack"></div>
@@ -1839,7 +1846,7 @@
 </main>
 
 <footer>
-  <div class="wrap">
+  <div class="wrap reveal">
     <div class="footer-grid">
       <div class="footer-col" style="max-width:280px;">
         <a href="#top" class="logo" style="margin-bottom:14px;">
