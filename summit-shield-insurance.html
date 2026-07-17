@@ -18,6 +18,7 @@
 <meta name="twitter:title" content="Summit Shield Insurance Case Study — a complete lead-to-policy system">
 <meta name="twitter:description" content="Five pipeline stages and six published GoHighLevel workflows connecting inquiry, consultation, proposal, application, and policy onboarding.">
 <meta name="twitter:image" content="https://jomelnoriega.com/og-image.png">
+<script>document.documentElement.classList.add('js');</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -194,8 +195,64 @@
     padding:26px 0 8px;
   }
   .wf-shot:focus-visible{outline:2px solid var(--teal); outline-offset:3px;}
+  /* ===== Motion layer (same system as the homepage) ===== */
+  @keyframes rise-in{
+    from{opacity:0; transform:translateY(18px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  @keyframes btn-shine{
+    to{transform:translateX(340%) skewX(-18deg);}
+  }
+  /* header entrance cascade — tag, title, intro, links, disclosure, then each stat */
+  .js .case-hero > *{animation:rise-in .7s cubic-bezier(.22,.65,.3,1) backwards;}
+  .js .case-hero > :nth-child(1){animation-delay:.05s;}
+  .js .case-hero > :nth-child(2){animation-delay:.14s;}
+  .js .case-hero > :nth-child(3){animation-delay:.23s;}
+  .js .case-hero > :nth-child(4){animation-delay:.32s;}
+  .js .case-hero > :nth-child(5){animation-delay:.41s;}
+  .js .case-hero > :nth-child(6){animation-delay:.5s;}
+  .js .case-hero > :nth-child(7){animation-delay:.6s;}
+  .js .case-hero .stats{animation:none;}
+  .js .case-hero .stats .stat{animation:rise-in .7s cubic-bezier(.22,.65,.3,1) backwards;}
+  .js .case-hero .stats .stat:nth-child(1){animation-delay:.52s;}
+  .js .case-hero .stats .stat:nth-child(2){animation-delay:.6s;}
+  .js .case-hero .stats .stat:nth-child(3){animation-delay:.68s;}
+  .js .case-hero .stats .stat:nth-child(4){animation-delay:.76s;}
+  /* reveal on scroll — hidden only when JS is present to reveal it */
+  .js .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
+  .js .reveal.in{opacity:1; transform:translateY(0);}
+  /* cards & pipeline stages stagger in when their section reveals */
+  .js .reveal:not(.in) :is(.wf-card,.stage-list li){opacity:0;}
+  .js .reveal.in :is(.wf-card,.stage-list li){animation:rise-in .6s cubic-bezier(.22,.65,.3,1) backwards;}
+  .js .reveal.in :is(.wf-card,.stage-list li):nth-child(1){animation-delay:.1s;}
+  .js .reveal.in :is(.wf-card,.stage-list li):nth-child(2){animation-delay:.19s;}
+  .js .reveal.in :is(.wf-card,.stage-list li):nth-child(3){animation-delay:.28s;}
+  .js .reveal.in :is(.wf-card,.stage-list li):nth-child(4){animation-delay:.37s;}
+  .js .reveal.in :is(.wf-card,.stage-list li):nth-child(5){animation-delay:.46s;}
+  .js .reveal.in :is(.wf-card,.stage-list li):nth-child(6){animation-delay:.55s;}
+  @media (hover:hover) and (pointer:fine){
+    /* hover lift on stat and workflow cards */
+    .stat,.wf-card{transition:transform .25s ease;}
+    .stat:hover,.wf-card:hover{transform:translateY(-3px);}
+    /* light sweep across primary buttons on hover */
+    .btn-primary{overflow:hidden;}
+    .btn-primary::after{
+      content:""; position:absolute; top:-2px; bottom:-2px; left:0; width:55%;
+      background:linear-gradient(105deg, transparent 15%, rgba(255,255,255,0.32) 50%, transparent 85%);
+      transform:translateX(-180%) skewX(-18deg);
+      pointer-events:none;
+    }
+    .btn-primary:hover::after{animation:btn-shine .65s ease .04s;}
+  }
   @media (prefers-reduced-motion: reduce){
     .wf-shot{transition:none;}
+    html{scroll-behavior:auto;}
+    .js .case-hero > *,.js .case-hero .stats .stat{animation:none;}
+    .js .reveal{opacity:1; transform:none; transition:none;}
+    .js .reveal:not(.in) :is(.wf-card,.stage-list li){opacity:1;}
+    .js .reveal.in :is(.wf-card,.stage-list li){animation:none;}
+    .stat:hover,.wf-card:hover{transform:none;}
+    .btn-primary::after{display:none;}
   }
   .wf-card h3{font-size:15.5px;margin:12px 0 4px;}
   .wf-card p{font-size:13.5px;margin:0;color:var(--paper-faint);}
@@ -235,7 +292,7 @@
 </div>
 
 <header class="section-pad">
-  <div class="wrap">
+  <div class="wrap case-hero">
     <span class="tag">Case study &middot; spec build</span>
     <h1>Summit Shield Insurance — a complete <span class="serif">lead-to-policy system</span> in GoHighLevel</h1>
     <p style="max-width:720px;font-size:17.5px;">One connected system takes an insurance prospect from first inquiry to consultation, proposal, application, and policy onboarding — while keeping the team informed at every handoff.</p>
@@ -255,7 +312,7 @@
 </header>
 
 <section class="section-pad" style="padding-top:20px;">
-  <div class="wrap">
+  <div class="wrap reveal">
     <span class="tag">The problem this solves</span>
     <h2>Insurance leads rarely disappear all at once. They leak out through <span class="serif">small handoff gaps.</span></h2>
     <p style="max-width:720px;">A prospect submits a form, books a consultation, shares sensitive application details, and waits for a decision. When those steps live across inboxes and memory, follow-up slows down and context gets lost. This demo connects the journey in one CRM so each milestone triggers the next action.</p>
@@ -263,7 +320,7 @@
 </section>
 
 <section class="section-pad" style="padding-top:0;">
-  <div class="wrap">
+  <div class="wrap reveal">
     <span class="tag">The pipeline</span>
     <h2>Five stages. One clear path from inquiry to coverage.</h2>
     <p style="max-width:720px;">The pipeline mirrors the sales process, while a separate client-information workflow supports the Consultation Booked stage without adding a misleading extra pipeline step.</p>
@@ -282,7 +339,7 @@
 </section>
 
 <section class="section-pad" style="padding-top:0;">
-  <div class="wrap">
+  <div class="wrap reveal">
     <span class="tag">The workflows</span>
     <h2>Six published workflows. This is the <span class="serif">engine room.</span></h2>
     <figure>
@@ -318,7 +375,7 @@
 </section>
 
 <div class="cta-band">
-  <div class="wrap">
+  <div class="wrap reveal">
     <span class="tag">Want this for your business?</span>
     <h2 style="max-width:640px;margin-left:auto;margin-right:auto;">Same method. Your pipeline, your follow-up, your customer journey.</h2>
     <p style="max-width:560px;margin:0 auto 24px;">I map the handoffs, build the CRM, and automate the work that should not depend on memory.</p>
@@ -331,6 +388,20 @@
   <div class="wrap">© 2026 Jomel Noriega &middot; <a href="index.html" style="color:var(--paper-dim);">jomelnoriega.com</a></div>
 </footer>
 
+<script>
+  // Scroll reveal (same system as the homepage)
+  (function(){
+    var reveals = document.querySelectorAll('.reveal');
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, {threshold:0.12});
+      reveals.forEach(function(el){ io.observe(el); });
+    } else {
+      reveals.forEach(function(el){ el.classList.add('in'); });
+    }
+  })();
+</script>
 <script>
   // Six-workflow grid: collapse each canvas into a fixed window, expand on click
   document.querySelectorAll('.wf-grid .wf-card img').forEach(function(img){
