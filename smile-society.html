@@ -115,7 +115,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     position:absolute;
     inset:0;
     border-radius:inherit;
-    border:2.5px solid transparent;
+    border:2px solid transparent;
     background:
       radial-gradient(circle, #4E8BD9 10%, transparent 20%),
       radial-gradient(circle at 40% 40%, #5EB4D6 5%, transparent 15%),
@@ -123,7 +123,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       radial-gradient(circle at 40% 60%, #7BB1F0 10%, transparent 20%),
       repeating-conic-gradient(from 236.84deg at 50% 50%, #4E8BD9 0%, #5EB4D6 5%, #8B7AD8 10%, #7BB1F0 15%, #4E8BD9 20%);
     background-attachment:fixed;
-    opacity:var(--active);
+    opacity:calc(var(--active) * 0.55);
     transition:opacity .3s ease;
     -webkit-mask-clip:padding-box, border-box;
     mask-clip:padding-box, border-box;
@@ -135,7 +135,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   /* blurred duplicate of the ring = soft halo bloom around the bright segment */
   .glow-border::before{
     filter:blur(10px);
-    opacity:calc(var(--active) * 0.85);
+    opacity:calc(var(--active) * 0.4);
   }
   .meta-row{display:flex;flex-wrap:wrap;gap:12px 26px;align-items:center;margin-top:22px;font-size:13px;color:var(--paper-faint);}
   .meta-row a{color:var(--paper-dim);}
