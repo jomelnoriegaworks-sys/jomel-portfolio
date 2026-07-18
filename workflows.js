@@ -76,7 +76,7 @@ const WORKFLOWS = [
     id: "appt-reminders",
     label: "Appointment Reminders",
     problem: "No-shows eat into chair time. People forget appointments booked weeks ago, and a single missed slot is real revenue gone for the day.",
-    solution: "Automated reminders fire at set intervals before the appointment, with a final same-day nudge that drops no-shows significantly.",
+    solution: "Automated reminders fire at set intervals before the appointment, with a final same-day reminder that helps reduce avoidable no-shows.",
     alt: "Workflow diagram: booking an appointment triggers a reminder email 48 hours before, then a final SMS the morning of the appointment.",
     svg: `
       <svg viewBox="0 0 980 160" xmlns="http://www.w3.org/2000/svg">

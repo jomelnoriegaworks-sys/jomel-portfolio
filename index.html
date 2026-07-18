@@ -635,11 +635,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .case-role{
     margin:14px 0 0;
     color:var(--text-faint);
-    font-family:'JetBrains Mono', monospace;
-    font-size:10.5px;
-    line-height:1.65;
-    letter-spacing:.08em;
-    text-transform:uppercase;
+    font-size:13.5px;
+    line-height:1.6;
   }
   .case-video{margin:28px 40px 8px; padding:26px 0 4px; border-top:1px solid var(--line);}
   .case-video .lbl{
@@ -668,11 +665,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     position:absolute; inset:0; width:100%; height:100%;
     display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;
     background:
+      linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.7)),
       radial-gradient(circle at 50% 0%, rgba(255,255,255,0.06), transparent 55%),
+      var(--video-poster) center/cover no-repeat,
       #0d0d0d;
-    border:0; cursor:pointer;
+    border:0; cursor:pointer; overflow:hidden;
     color:var(--text); padding:0;
   }
+  .case-video .video-facade > *{position:relative; z-index:1;}
   .case-video .video-facade .play-circle{
     width:66px; height:66px; border-radius:50%;
     background:var(--text);
@@ -761,6 +761,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .case-note{font-size:13px; color:var(--muted); font-style:italic;}
   .case-actions{display:flex;align-items:flex-start;flex-wrap:wrap;gap:8px 22px;}
   .case-actions .case-link{margin-right:0!important;min-width:0;}
+  .case-preview-copy .case-actions{margin-top:14px;}
   .live-dot{
     display:inline-block; width:7px; height:7px; border-radius:50%;
     background:var(--ok); box-shadow:0 0 6px rgba(63,174,126,.8);
@@ -1547,7 +1548,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="wrap">
       <span class="eyebrow"><span class="dot"></span> GOHIGHLEVEL CRM & AUTOMATION SPECIALIST</span>
       <h1>How many leads slip away while you're <span class="serif">busy running your business?</span></h1>
-      <p class="sub">Probably more than you think. I build GoHighLevel systems that capture leads, automate follow-ups, and streamline everyday operations, so every opportunity gets the attention it deserves.</p>
+      <p class="sub">I build GoHighLevel systems that capture leads, automate follow-up, and keep everyday operations moving — so every opportunity gets the attention it needs.</p>
       <div class="hero-ctas">
         <a href="#contact" class="btn btn-primary">Book a discovery call →</a>
         <a href="#case-study" class="btn btn-ghost">View sample work</a>
@@ -1638,47 +1639,47 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="sec-mark" aria-hidden="true"><span class="num">/01</span><span class="tag">problem → solution</span><span class="rule"></span></div>
       <div class="sec-head">
         <h2>Does any of this feel <span class="serif">familiar?</span></h2>
-        <p>You’re paying for GoHighLevel, but important parts of the customer journey still depend on someone remembering the next step. Here’s how I fix the places where leads and follow-up usually break.</p>
+        <p>Important parts of your customer journey still depend on someone remembering the next step. These are the gaps I fix inside GoHighLevel.</p>
       </div>
       <div class="problem-grid">
         <div class="problem-item">
           <span class="num" aria-hidden="true">01</span>
           <h3>A lead fills out your form — and then waits.</h3>
-          <p>No immediate reply, no assigned owner, and no follow-up task. By the time someone notices, the lead may have contacted a competitor.</p>
+          <p>No immediate reply or assigned owner. By the time someone notices, the lead may have contacted a competitor.</p>
           <div class="problem-fix">
             <span class="lbl">The solution</span>
             <h4>Instant lead response and routing</h4>
-            <p>Send an immediate SMS or email, create the opportunity, assign an owner, and trigger the next follow-up automatically.</p>
+            <p>Reply instantly, create the opportunity, assign an owner, and start the next follow-up.</p>
           </div>
         </div>
         <div class="problem-item">
           <span class="num" aria-hidden="true">02</span>
           <h3>Your pipeline no longer reflects reality.</h3>
-          <p>Opportunities stay in the wrong stages, follow-up gets missed, and no one can confidently tell which deals need attention.</p>
+          <p>Deals sit in the wrong stages, follow-up gets missed, and no one knows what needs attention.</p>
           <div class="problem-fix">
             <span class="lbl">The solution</span>
             <h4>Automated pipeline management</h4>
-            <p>Update stages from forms, bookings, replies, and completed actions so your CRM reflects what is actually happening.</p>
+            <p>Update stages from forms, bookings, replies, and completed actions so the CRM stays accurate.</p>
           </div>
         </div>
         <div class="problem-item">
           <span class="num" aria-hidden="true">03</span>
           <h3>Your funnel, calendar, and CRM feel disconnected.</h3>
-          <p>Visitors submit forms or book appointments, but their information doesn’t move cleanly into your pipeline and follow-up.</p>
+          <p>Bookings happen, but contact data, pipeline stages, and follow-up do not stay connected.</p>
           <div class="problem-fix">
             <span class="lbl">The solution</span>
             <h4>A connected booking journey</h4>
-            <p>Connect the page, form, calendar, pipeline, confirmations, and reminders into one clear customer journey.</p>
+            <p>Connect the page, form, calendar, pipeline, confirmations, and reminders into one journey.</p>
           </div>
         </div>
         <div class="problem-item">
           <span class="num" aria-hidden="true">04</span>
-          <h3>Your SMS setup is holding everything back.</h3>
-          <p>A2P registration remains unfinished, messages fail, or nobody knows whether the account is configured correctly.</p>
+          <h3>Your texts aren’t reliably reaching leads.</h3>
+          <p>Incomplete registration or sender configuration can cause messages to fail or reach fewer leads.</p>
           <div class="problem-fix">
             <span class="lbl">The solution</span>
             <h4>A2P and messaging setup</h4>
-            <p>Prepare registration, configure business information, review messaging requirements, and test delivery before launch.</p>
+            <p>Complete A2P registration, configure business details, and test messaging before launch.</p>
           </div>
         </div>
       </div>
@@ -1710,10 +1711,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <div class="case-card">
         <div class="case-top">
-          <span class="case-badge">Complete demonstration build</span>
+          <span class="case-badge">Demo build</span>
           <h3>Smile Society — dental clinic booking funnel</h3>
-          <p class="tagline">A complete GoHighLevel build designed to turn a visitor into a booked consultation without friction.</p>
-          <p class="case-role">My role: strategy · customer-journey mapping · GHL build · automation · testing</p>
+          <p class="tagline">Dental clinics can lose bookings when the website, calendar, and follow-up operate as separate steps. This demo connects them inside GoHighLevel.</p>
+          <p class="case-role"><strong>My role:</strong> Strategy, customer-journey mapping, GoHighLevel implementation, automation, and testing.</p>
         </div>
         <div class="case-preview">
           <div class="case-shot">
@@ -1727,10 +1728,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <li>A native booking calendar connected to the CRM pipeline.</li>
               <li>Nine workflows for lead follow-up, booking reminders, and customer communication.</li>
             </ul>
-            <a class="case-link" href="smile-society.html">Explore the full case study →</a>
+            <div class="case-actions">
+              <a class="case-link" href="smile-society.html">Full case study →</a>
+              <a class="case-link" href="https://smilesociety.online" target="_blank" rel="noopener">Live site ↗</a>
+              <a class="case-link" href="#smile-walkthrough">Watch walkthrough ↓</a>
+            </div>
           </div>
         </div>
-        <div class="case-video">
+        <div class="case-video" id="smile-walkthrough">
           <span class="lbl">Watch the build — 7 min walkthrough</span>
           <ul class="video-points">
             <li>How the page moves a visitor from problem to booked consult in one path</li>
@@ -1738,7 +1743,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <li>The native GHL calendar that books and triggers follow-up automatically</li>
           </ul>
           <div class="video-frame">
-            <button class="video-facade" type="button" data-src-desktop="case-assets/walkthrough-1080.mp4" data-src-mobile="case-assets/walkthrough-720.mp4" data-poster="case-assets/walkthrough-poster.jpg" data-title="Smile Society funnel walkthrough" aria-label="Play the Smile Society funnel walkthrough video">
+            <button class="video-facade" type="button" style="--video-poster:url('case-assets/walkthrough-poster.jpg')" data-src-desktop="case-assets/walkthrough-1080.mp4" data-src-mobile="case-assets/walkthrough-720.mp4" data-poster="case-assets/walkthrough-poster.jpg" data-title="Smile Society funnel walkthrough" aria-label="Play the Smile Society funnel walkthrough video">
               <span class="play-circle"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
               <span class="fc-title">Play the walkthrough</span>
               <span class="fc-sub">Smile Society &middot; 7 min</span>
@@ -1747,27 +1752,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="case-body">
           <div class="case-block">
-            <span class="lbl">The brief</span>
-            <p>Local dental clinics lose patients the same way most service businesses do — a pretty website that describes services but never actually asks anyone to book. This funnel fixes that.</p>
-          </div>
-          <div class="case-block">
             <span class="lbl">What this demonstrates</span>
             <p>How a dental clinic can connect its website, calendar, pipeline, and follow-up into one booking system built around the customer journey.</p>
             <p class="case-note">Self-directed demonstration project — not a paid-client performance claim.</p>
-            <a class="case-link" href="https://smilesociety.online" target="_blank" rel="noopener">
-              See it live <span aria-hidden="true" class="live-dot"></span><span class="live-lbl">LIVE</span> &middot; smilesociety.online
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
-            </a>
           </div>
         </div>
       </div>
 
       <div class="case-card" data-case="summit-shield">
         <div class="case-top">
-          <span class="case-badge">CRM demonstration build</span>
+          <span class="case-badge">Demo build</span>
           <h3>Summit Shield Insurance — lead-to-policy CRM</h3>
           <p class="tagline">A complete GoHighLevel demo connecting inquiry, consultation, client information, proposal, application, and policy onboarding.</p>
-          <p class="case-role">My role: process mapping · CRM architecture · GHL build · automation · QA documentation</p>
+          <p class="case-role"><strong>My role:</strong> Process mapping, CRM architecture, GoHighLevel implementation, automation, and QA documentation.</p>
         </div>
         <div class="case-preview">
           <div class="case-shot">
@@ -1781,10 +1778,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <li>Six workflows for follow-up, reminders, internal alerts, and tasks.</li>
               <li>Client-information handling plus implementation and handoff documentation.</li>
             </ul>
-            <a class="case-link" href="summit-shield-insurance.html">Explore the full case study →</a>
+            <div class="case-actions">
+              <a class="case-link" href="summit-shield-insurance.html">Full case study →</a>
+              <a class="case-link" href="https://summitshield.online/" target="_blank" rel="noopener">Live site ↗</a>
+              <a class="case-link" href="#summit-walkthrough">Watch walkthrough ↓</a>
+            </div>
           </div>
         </div>
-        <div class="case-video">
+        <div class="case-video" id="summit-walkthrough">
           <span class="lbl">Watch the build — 6 min walkthrough</span>
           <ul class="video-points">
             <li>The insurance website and its path from visitor to consultation</li>
@@ -1792,7 +1793,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <li>Six workflows that automate follow-up and internal handoffs</li>
           </ul>
           <div class="video-frame">
-            <button class="video-facade" type="button" data-src-desktop="case-assets/summit-walkthrough-1080.mp4" data-src-mobile="case-assets/summit-walkthrough-720.mp4" data-poster="case-assets/summit-walkthrough-poster.jpg" data-title="Summit Shield Insurance CRM and automation walkthrough" aria-label="Play the Summit Shield Insurance walkthrough video">
+            <button class="video-facade" type="button" style="--video-poster:url('case-assets/summit-walkthrough-poster.jpg')" data-src-desktop="case-assets/summit-walkthrough-1080.mp4" data-src-mobile="case-assets/summit-walkthrough-720.mp4" data-poster="case-assets/summit-walkthrough-poster.jpg" data-title="Summit Shield Insurance CRM and automation walkthrough" aria-label="Play the Summit Shield Insurance CRM and automation walkthrough video">
               <span class="play-circle"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
               <span class="fc-title">Play the walkthrough</span>
               <span class="fc-sub">Summit Shield &middot; 6 min</span>
@@ -1801,16 +1802,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="case-body">
           <div class="case-block">
-            <span class="lbl">The brief</span>
-            <p>Insurance sales involve several handoffs where slow follow-up or missing context can stall an otherwise qualified opportunity. This demo puts that journey into one visible CRM process.</p>
-          </div>
-          <div class="case-block">
             <span class="lbl">What this demonstrates</span>
             <p>How an insurance team can manage the journey from inquiry to policy onboarding without relying on disconnected inboxes or memory.</p>
             <p class="case-note">Self-directed demonstration project — not a paid-client performance claim.</p>
-            <div class="case-actions">
-              <a class="case-link" href="https://summitshield.online/" target="_blank" rel="noopener">See it live <span aria-hidden="true" class="live-dot"></span><span class="live-lbl">LIVE</span> &middot; summitshield.online <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
-            </div>
             <div class="case-docs">
               <div>
                 <span class="lbl">Implementation documentation</span>
@@ -1840,10 +1834,55 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <iframe class="portfolio-doc-frame" title="Summit Shield CRM Implementation Documentation PDF" loading="lazy" data-src="Summit_Shield_Deliverables/Summit_Shield_CRM_Implementation_Documentation.pdf"></iframe>
   </dialog>
 
+  <!-- ============ HOW IT WORKS ============ -->
+  <section class="section-pad" id="how-it-works" style="padding-top:0;">
+    <div class="wrap reveal">
+      <div class="sec-mark" aria-hidden="true"><span class="num">/04</span><span class="tag">my build framework</span><span class="rule"></span></div>
+      <div class="sec-head">
+        <h2>A four-step build framework — from <span class="serif">audit to handoff.</span></h2>
+        <p>Every project follows the same sequence so you can review the logic, scope, and customer journey before anything goes live.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <span class="step-num" aria-hidden="true">01</span>
+          <div>
+            <h3>Discover &amp; audit</h3>
+            <p>We review your current GoHighLevel setup, customer journey, manual work, and communication gaps. You receive a confirmed scope showing what should be fixed, built, or automated first.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-num" aria-hidden="true">02</span>
+          <div>
+            <h3>Map &amp; approve</h3>
+            <p>I map the pipeline stages, triggers, actions, messages, decision branches, and exceptions. You review the proposed system before the build begins.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-num" aria-hidden="true">03</span>
+          <div>
+            <h3>Build &amp; validate</h3>
+            <p>I build the approved system inside your account and test forms, calendars, messages, pipeline updates, notifications, and workflow branches before launch.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="step-num" aria-hidden="true">04</span>
+          <div>
+            <h3>Launch &amp; handoff</h3>
+            <p>Once approved, I publish the system and walk you through what was built. Documentation and post-launch support are included according to the agreed scope.</p>
+          </div>
+        </div>
+      </div>
+      <div class="framework-proof">
+        <p>Want to see what a documented handoff looks like? Review the sample implementation guide from the Summit Shield demo build.</p>
+        <a class="case-link" href="Summit_Shield_Deliverables/Summit_Shield_CRM_Implementation_Documentation.pdf" target="_blank" rel="noopener" data-summit-doc-open>View the implementation guide →</a>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ ANALYTICS (GA4 + GTM) ============ -->
   <section class="section-pad" id="analytics" style="padding-top:0;">
     <div class="wrap reveal">
-      <div class="sec-mark" aria-hidden="true"><span class="num">/04</span><span class="tag">analytics implementation</span><span class="rule"></span></div>
+      <div class="sec-mark" aria-hidden="true"><span class="num">/05</span><span class="tag">analytics implementation</span><span class="rule"></span></div>
       <div class="sec-head">
         <h2>Google Analytics &amp; <span class="serif">Tag Manager.</span></h2>
         <p>Implemented live on this site — GA4 and Tag Manager, verified in realtime.</p>
@@ -1904,51 +1943,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </article>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ HOW IT WORKS ============ -->
-  <section class="section-pad" id="how-it-works" style="padding-top:0;">
-    <div class="wrap reveal">
-      <div class="sec-mark" aria-hidden="true"><span class="num">/05</span><span class="tag">my build framework</span><span class="rule"></span></div>
-      <div class="sec-head">
-        <h2>A four-step build framework — from <span class="serif">audit to handoff.</span></h2>
-        <p>Every project follows the same sequence so you can review the logic, scope, and customer journey before anything goes live.</p>
-      </div>
-      <div class="steps">
-        <div class="step">
-          <span class="step-num" aria-hidden="true">01</span>
-          <div>
-            <h3>Discover &amp; audit</h3>
-            <p>We review your current GoHighLevel setup, customer journey, manual work, and communication gaps. You receive a confirmed scope showing what should be fixed, built, or automated first.</p>
-          </div>
-        </div>
-        <div class="step">
-          <span class="step-num" aria-hidden="true">02</span>
-          <div>
-            <h3>Map &amp; approve</h3>
-            <p>I map the pipeline stages, triggers, actions, messages, decision branches, and exceptions. You review the proposed system before the build begins.</p>
-          </div>
-        </div>
-        <div class="step">
-          <span class="step-num" aria-hidden="true">03</span>
-          <div>
-            <h3>Build &amp; validate</h3>
-            <p>I build the approved system inside your account and test forms, calendars, messages, pipeline updates, notifications, and workflow branches before launch.</p>
-          </div>
-        </div>
-        <div class="step">
-          <span class="step-num" aria-hidden="true">04</span>
-          <div>
-            <h3>Launch &amp; handoff</h3>
-            <p>Once approved, I publish the system and walk you through what was built. Documentation and post-launch support are included according to the agreed scope.</p>
-          </div>
-        </div>
-      </div>
-      <div class="framework-proof">
-        <p>Want to see what a documented handoff looks like? Review the real implementation guide from the Summit Shield sample build.</p>
-        <a class="case-link" href="Summit_Shield_Deliverables/Summit_Shield_CRM_Implementation_Documentation.pdf" target="_blank" rel="noopener" data-summit-doc-open>View the implementation guide →</a>
       </div>
     </div>
   </section>
