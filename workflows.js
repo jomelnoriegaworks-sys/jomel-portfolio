@@ -1,11 +1,10 @@
 // ===== Workflow data: 9 sample GHL automations =====
-// Each workflow: id, label (tab), business, problem, solution, and an SVG diagram (GHL-native terms)
+// Each workflow: id, label (tab), problem, solution, and an SVG diagram (GHL-native terms)
 
 const WORKFLOWS = [
   {
     id: "lead-followup",
     label: "Lead Follow-Up",
-    business: "Bright Keys Realty",
     problem: "New leads come in through the website, but if no agent happens to be free, the lead just sits there until someone remembers to call.",
     solution: "The moment a lead is created, GHL sends an instant text, waits, then escalates to a call task if there's no reply — so no lead goes more than a few minutes without contact.",
     alt: "Workflow diagram: a new contact triggers an instant SMS, then a 10-minute wait. If the lead replied, they're tagged Engaged and moved to the next stage; if not, the assigned user gets a call task.",
@@ -47,7 +46,6 @@ const WORKFLOWS = [
   {
     id: "missed-call",
     label: "Missed Call Text Back",
-    business: "TrueFix Home Services",
     problem: "Calls come in while techs are on-site or driving. A missed call with no callback is a lost job — most callers just dial the next company on the list.",
     solution: "Any missed call instantly triggers a text so the caller hears back within seconds, even if no one was free to pick up.",
     alt: "Workflow diagram: a missed call triggers an instant text back, creates an opportunity in the pipeline, and notifies the assigned user with a callback reminder.",
@@ -77,7 +75,6 @@ const WORKFLOWS = [
   {
     id: "appt-reminders",
     label: "Appointment Reminders",
-    business: "Bloom Dental Studio",
     problem: "No-shows eat into chair time. People forget appointments booked weeks ago, and a single missed slot is real revenue gone for the day.",
     solution: "Automated reminders fire at set intervals before the appointment, with a final same-day nudge that drops no-shows significantly.",
     alt: "Workflow diagram: booking an appointment triggers a reminder email 48 hours before, then a final SMS the morning of the appointment.",
@@ -112,7 +109,6 @@ const WORKFLOWS = [
   {
     id: "lead-nurture",
     label: "Lead Nurturing",
-    business: "Elevate Online Coaching",
     problem: "Most leads aren't ready to buy the day they sign up, and a one-time welcome email is the last thing they ever hear from the brand.",
     solution: "A multi-day value sequence nurtures the lead automatically, with engagement tracked so sales only steps in once interest is shown.",
     alt: "Workflow diagram: a lead opt-in triggers a welcome email, a two-day wait, then a case-study email. If the lead clicks a link, the assigned user is notified of a hot lead for sales follow-up.",
@@ -153,7 +149,6 @@ const WORKFLOWS = [
   {
     id: "reactivation",
     label: "Customer Reactivation",
-    business: "Glow Box Beauty Subscription",
     problem: "Customers quietly go inactive — no cancellation, just no orders. Without a system watching for it, that revenue disappears with no one noticing.",
     solution: "GHL flags any contact with no purchase in 60 days, sends a win-back offer, then tags churned contacts that don't respond so the list stays clean.",
     alt: "Workflow diagram: no purchase in 60 days triggers a win-back email and a five-day wait. Contacts who purchase are tagged Reactivated; contacts who don't are tagged Churned and removed from the active list.",
@@ -195,7 +190,6 @@ const WORKFLOWS = [
   {
     id: "quote-followup",
     label: "Quote Follow-Up",
-    business: "LaunchReady Marketing Agency",
     problem: "Quotes get sent but prospects go silent — no one follows up consistently, so deals slip through the cracks.",
     solution: "GHL automatically follows up 24 hours after a quote is sent via SMS, then again 48 hours later with an email that addresses objections. If accepted, the contact moves to onboarding.",
     alt: "Workflow diagram: a sent quote triggers a 24-hour wait, an SMS follow-up, then another 24-hour wait. If the quote is accepted, the contact's pipeline stage changes to Onboarding.",
@@ -238,7 +232,6 @@ const WORKFLOWS = [
   {
     id: "onboarding",
     label: "Customer Onboarding",
-    business: "PeakFit Personal Training Studio",
     problem: "New clients sign up excited, then go quiet in week one because no one set expectations on what happens next.",
     solution: "Once payment clears, a structured welcome sequence sends intake forms, schedules the first session, and checks in automatically — so nothing depends on someone remembering to follow up.",
     alt: "Workflow diagram: a received payment triggers a welcome email with an intake form, a booking link for the first session, a three-day wait, then an SMS check-in.",
@@ -273,7 +266,6 @@ const WORKFLOWS = [
   {
     id: "internal-notify",
     label: "Internal Notifications",
-    business: "ClarityHR Consulting",
     problem: "Important events — a high-value lead, a cancelled appointment, a negative review — happen, but the team only finds out hours later by checking the dashboard manually.",
     solution: "Specific triggers route an instant alert to the right person on the team, so urgent situations get handled in minutes, not at the end of the day.",
     alt: "Workflow diagram: pipeline stage changes and cancelled appointments both feed a high-value check. High-value events send an urgent SMS to the assigned user, post to the team Slack channel, and add a priority follow-up tag.",
@@ -317,7 +309,6 @@ const WORKFLOWS = [
   {
     id: "sales-pipeline",
     label: "Sales Pipeline",
-    business: "GHL-native pipeline structure",
     problem: "Deals exist across scattered spreadsheets and sticky notes, so no one can say with confidence what stage a deal is actually in, or what's stuck.",
     solution: "A structured pipeline moves contacts automatically as actions happen, with each stage triggering its own follow-up — and a clean Won/Lost split that closes the loop.",
     alt: "Workflow diagram: leads move through New Lead, Contacted, Qualified, and Proposal Sent stages, each with automated actions, ending in a Won or Lost decision. Won moves to onboarding; Lost is tagged for re-engagement in 90 days.",
@@ -399,7 +390,7 @@ const WORKFLOWS = [
       <div class="wf-card">
         <div class="wf-meta">
           <div class="wf-meta-item problem">
-            <span class="lbl">Problem — ${wf.business}</span>
+            <span class="lbl">Problem</span>
             <p>${wf.problem}</p>
           </div>
           <div class="wf-meta-item solution">
