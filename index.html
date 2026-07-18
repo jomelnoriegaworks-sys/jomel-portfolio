@@ -1316,20 +1316,69 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .js .hero .wrap > :nth-child(7){animation-delay:.64s;}
 
   /* cards stagger in one-by-one when their section reveals */
-  .js .reveal:not(.in) :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item,.ga-card){opacity:0;}
-  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item,.ga-card){
+  .js .reveal:not(.in) :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item,.ga-card,.wf-card,.case-card){opacity:0;}
+  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item,.ga-card,.wf-card,.case-card){
     animation:rise-in .6s cubic-bezier(.22,.65,.3,1) backwards;
   }
-  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item,.ga-card):nth-child(1){animation-delay:.1s;}
-  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item,.ga-card):nth-child(2){animation-delay:.19s;}
-  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item,.ga-card):nth-child(3){animation-delay:.28s;}
-  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item,.ga-card):nth-child(4){animation-delay:.37s;}
-  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item,.ga-card):nth-child(5){animation-delay:.46s;}
-  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item,.ga-card):nth-child(6){animation-delay:.55s;}
+  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item,.ga-card,.wf-card,.case-card):nth-child(1){animation-delay:.1s;}
+  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item,.ga-card,.wf-card,.case-card):nth-child(2){animation-delay:.19s;}
+  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item,.ga-card,.wf-card,.case-card):nth-child(3){animation-delay:.28s;}
+  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item,.ga-card,.wf-card,.case-card):nth-child(4){animation-delay:.37s;}
+  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item,.ga-card,.wf-card,.case-card):nth-child(5){animation-delay:.46s;}
+  .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item,.ga-card,.wf-card,.case-card):nth-child(6){animation-delay:.55s;}
 
   /* section rule draws itself across when the section reveals */
   .js .reveal .sec-mark .rule{transform:scaleX(0); transform-origin:0 50%; transition:transform 1s cubic-bezier(.22,.65,.3,1) .25s;}
   .js .reveal.in .sec-mark .rule{transform:scaleX(1);}
+
+  /* ===== Diagram motion: flowing connectors + signal pulse (desktop only) ===== */
+  .flow-dot{opacity:0; filter:drop-shadow(0 0 6px rgba(123,177,240,.9));}
+  @media (min-width:900px) and (prefers-reduced-motion: no-preference){
+    /* dashes drift toward the outcome on every workflow diagram */
+    .js .hero-strip .nflow, .js .wf-diagram .nflow{
+      stroke-dasharray:5 7;
+      animation:dash-flow .9s linear infinite;
+    }
+    /* a lead travels the hero wire every 4.5s, sliding behind each node */
+    .js .hero-strip .flow-dot{animation:dot-travel 4.5s linear infinite;}
+    .js .hero-strip .n-node rect{animation:node-hit 4.5s linear infinite;}
+    .js .hero-strip .n1 rect{animation-name:node-hit-first; animation-delay:.28s;}
+    .js .hero-strip .n2 rect{animation-delay:1.04s;}
+    .js .hero-strip .n3 rect{animation-delay:1.8s;}
+    .js .hero-strip .n4 rect{animation-delay:2.57s;}
+    .js .hero-strip .n5 rect{animation-name:node-win; animation-delay:3.33s;}
+  }
+  @keyframes dash-flow{to{stroke-dashoffset:-12;}}
+  @keyframes dot-travel{
+    0%{transform:translateX(0); opacity:0;}
+    3%{opacity:1;}
+    74%{opacity:1;}
+    80%{transform:translateX(980px); opacity:0;}
+    100%{transform:translateX(980px); opacity:0;}
+  }
+  @keyframes node-hit{
+    0%,100%{}
+    1.5%{stroke:rgba(255,255,255,.95); filter:drop-shadow(0 0 7px rgba(123,177,240,.55));}
+    9%{stroke:rgba(255,255,255,.16); filter:none;}
+  }
+  /* first node's resting stroke is brighter, so it returns to .75 not .16 */
+  @keyframes node-hit-first{
+    0%,100%{}
+    1.5%{stroke:#fff; filter:drop-shadow(0 0 7px rgba(123,177,240,.55));}
+    9%{stroke:rgba(255,255,255,.75); filter:none;}
+  }
+  @keyframes node-win{
+    0%,100%{}
+    2%{stroke:#5ad39e; filter:drop-shadow(0 0 10px rgba(63,174,126,.75));}
+    12%{stroke:#5ad39e; filter:drop-shadow(0 0 6px rgba(63,174,126,.45));}
+    22%{stroke:var(--ok); filter:none;}
+  }
+
+  /* hero trust cards pop in one-by-one after the panel lands */
+  .js .hero-stats .hero-stat{animation:rise-in .6s cubic-bezier(.22,.65,.3,1) backwards;}
+  .js .hero-stats .hero-stat:nth-child(1){animation-delay:.74s;}
+  .js .hero-stats .hero-stat:nth-child(2){animation-delay:.84s;}
+  .js .hero-stats .hero-stat:nth-child(3){animation-delay:.94s;}
 
   @media (hover:hover) and (pointer:fine){
     /* hover lift for small cards that only changed border color before */
@@ -1390,10 +1439,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .marquee-track{animation:none;}
     .js header{animation:none;}
     .js .hero .wrap > *{animation:none;}
-    .js .reveal:not(.in) :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item,.ga-card){opacity:1;}
-    .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item,.ga-card){animation:none;}
+    .js .reveal:not(.in) :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item,.ga-card,.wf-card,.case-card){opacity:1;}
+    .js .reveal.in :is(.problem-item,.cost-card,.about-card,.testi-feat,.testi-mini,.cred-item,.step,.faq-item,.ga-card,.wf-card,.case-card){animation:none;}
     .js .reveal .sec-mark .rule{transform:none; transition:none;}
     .hero-stat:hover,.cred-item:hover,.testi-mini:hover{transform:none;}
+    .js .hero-stats .hero-stat{animation:none;}
     .btn-primary::after{display:none;}
   }
 </style>
@@ -1486,31 +1536,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <path d="M0,0 L6,3 L0,6 Z" fill="#7C8893"/>
               </marker>
             </defs>
-            <g>
+            <circle class="flow-dot" cx="0" cy="55" r="4" fill="#7BB1F0"/>
+            <g class="n-node n1">
               <rect x="0" y="32" width="150" height="46" rx="8" fill="#1D2329" stroke="#E8702A" stroke-width="1"/>
               <text x="75" y="51" text-anchor="middle" class="nlabel">Form Submitted</text>
               <text x="75" y="65" text-anchor="middle" class="nsub">Trigger</text>
             </g>
             <line x1="150" y1="55" x2="208" y2="55" class="nflow" marker-end="url(#arrM)"/>
-            <g>
+            <g class="n-node n2">
               <rect x="208" y="32" width="150" height="46" rx="8" fill="#1D2329" stroke="#3a4248" stroke-width="1"/>
               <text x="283" y="51" text-anchor="middle" class="nlabel">SMS in 60 sec</text>
               <text x="283" y="65" text-anchor="middle" class="nsub">Action</text>
             </g>
             <line x1="358" y1="55" x2="416" y2="55" class="nflow" marker-end="url(#arrM)"/>
-            <g>
+            <g class="n-node n3">
               <rect x="416" y="32" width="150" height="46" rx="8" fill="#1D2329" stroke="#3a4248" stroke-width="1"/>
               <text x="491" y="51" text-anchor="middle" class="nlabel">Add to Pipeline</text>
               <text x="491" y="65" text-anchor="middle" class="nsub">Action</text>
             </g>
             <line x1="566" y1="55" x2="624" y2="55" class="nflow" marker-end="url(#arrM)"/>
-            <g>
+            <g class="n-node n4">
               <rect x="624" y="32" width="150" height="46" rx="8" fill="#1D2329" stroke="#3a4248" stroke-width="1"/>
               <text x="699" y="51" text-anchor="middle" class="nlabel">Notify You</text>
               <text x="699" y="65" text-anchor="middle" class="nsub">Action</text>
             </g>
             <line x1="774" y1="55" x2="832" y2="55" class="nflow" marker-end="url(#arrM)"/>
-            <g>
+            <g class="n-node n5">
               <rect x="832" y="32" width="148" height="46" rx="8" fill="#1D2329" stroke="#2A9D8F" stroke-width="1"/>
               <text x="906" y="51" text-anchor="middle" class="nlabel">Booked Call</text>
               <text x="906" y="65" text-anchor="middle" class="nsub">Outcome</text>
