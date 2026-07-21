@@ -786,6 +786,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     border:1px solid var(--line-strong);
     background:#fff;
   }
+  .img-lightbox-figure{
+    display:flex; flex-direction:column; align-items:center; gap:16px;
+    max-width:100%; max-height:100%; margin:0;
+  }
+  .img-lightbox-figure img{max-height:calc(100vh - 180px);}
+  .img-lightbox-caption{max-width:720px; text-align:center; cursor:default;}
+  .img-lightbox-caption strong{display:block; margin-bottom:6px; font-size:16px; color:var(--text);}
+  .img-lightbox-caption p{margin:0; font-size:14px; line-height:1.65; color:var(--text-dim);}
   @media (max-width:760px){
     .case-top{padding:28px 24px 0;}
     .case-preview{padding:0 24px;}
@@ -979,10 +987,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     font-size:8px; letter-spacing:.07em; text-transform:uppercase;
     color:var(--text-faint);
     text-align:center; line-height:1.5;
+    padding:0; border:0; background:none; cursor:zoom-in;
   }
+  .cred-zoom:hover{color:var(--text);}
+  .cred-zoom:focus-visible{outline:2px solid var(--accent); outline-offset:4px; border-radius:2px;}
   .cred-zoom svg{width:9px; height:9px; stroke:currentColor; flex-shrink:0;}
   .cred-item .t{font-size:15px; font-weight:600; line-height:1.35; letter-spacing:-0.01em;}
-  .cred-item .d{font-size:12.5px; color:var(--text-faint); margin:7px 0 0; line-height:1.6;}
   .cred-item .s{font-size:12.5px; color:var(--text-faint); margin-top:7px; line-height:1.6;}
   .cred-item .s a{
     color:var(--text-dim); font-weight:600;
@@ -1993,41 +2003,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="cred-item">
               <span class="cred-shot">
                 <img src="case-assets/hla-badge.jpg" data-full="case-assets/hla-badge-full.jpg" alt="HLA Automation Builder badge awarded to Jomel Noriega — click to enlarge" width="200" height="250" loading="lazy">
-                <span class="cred-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>click for full view</span>
+                <button class="cred-zoom" type="button" aria-label="View HLA Automation Builder certificate and description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>click for full view</button>
               </span>
               <div>
                 <div class="t">HLA Automation Builder</div>
+                <p class="d" hidden>Built a complete CRM system using HighLevel, recognized and validated by HL Accelerator.</p>
                 <div class="s"><a href="https://www.facebook.com/hlaccelerator" target="_blank" rel="noopener">Issued by HL Accelerator &rarr;</a></div>
               </div>
             </div>
             <div class="cred-item">
               <span class="cred-shot">
                 <img src="case-assets/n8n-quickstart.jpg" data-full="case-assets/n8n-quickstart-full.jpg" alt="n8n Quickstart certificate awarded to Jomel Noriega by the n8n Academy — click to enlarge" width="400" height="274" loading="lazy">
-                <span class="cred-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>click for full view</span>
+                <button class="cred-zoom" type="button" aria-label="View n8n Quickstart certificate and description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>click for full view</button>
               </span>
               <div>
                 <div class="t">n8n Quickstart | n8n academy</div>
+                <p class="d" hidden>Built practical n8n workflows and an AI agent using triggers, data transformation, error handling, and connections to real data.</p>
                 <div class="s"><a href="https://learn.n8n.io/" target="_blank" rel="noopener">Issued by n8n Academy &rarr;</a></div>
               </div>
             </div>
             <div class="cred-item">
               <span class="cred-shot">
                 <img src="case-assets/n8n-essentials-workflows.jpg" data-full="case-assets/n8n-essentials-workflows-full.jpg" alt="Essentials: Your First Workflows certificate awarded to Jomel Noriega by the n8n Academy — click to enlarge" width="400" height="282" loading="lazy">
-                <span class="cred-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>click for full view</span>
+                <button class="cred-zoom" type="button" aria-label="View Essentials: Your First Workflows certificate and description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>click for full view</button>
               </span>
               <div>
                 <div class="t">Essentials: Your First Workflows | n8n academy</div>
+                <p class="d" hidden>Learned to navigate the n8n canvas, build workflows, work with triggers and scheduling, and transform data between nodes.</p>
                 <div class="s"><a href="https://learn.n8n.io/" target="_blank" rel="noopener">Issued by n8n Academy &rarr;</a></div>
               </div>
             </div>
             <div class="cred-item">
               <span class="cred-shot">
                 <img src="make-foundation.1.png" data-full="make-foundation.1.png" alt="Make Foundation badge awarded to Jomel Noriega — click to enlarge" width="300" height="300" loading="lazy">
-                <span class="cred-zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>click for full view</span>
+                <button class="cred-zoom" type="button" aria-label="View Make Foundation badge and description"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>click for full view</button>
               </span>
               <div>
                 <div class="t">Make Foundation</div>
-                <p class="d">Completed all courses within Make Foundation and created their first automation, demonstrating proficiency in the basics of automation on a no-code platform.</p>
+                <p class="d" hidden>Completed all courses within Make Foundation and created their first automation, demonstrating proficiency in the basics of automation on a no-code platform.</p>
                 <div class="s"><a href="https://www.credly.com/organizations/make/badges" target="_blank" rel="noopener">Issued by Make &rarr;</a></div>
               </div>
             </div>
@@ -2473,10 +2486,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     function open(){
       var ov = document.createElement('div');
       ov.className = 'img-lightbox';
+      ov.setAttribute('role', 'dialog');
+      ov.setAttribute('aria-modal', 'true');
+      ov.setAttribute('aria-label', 'Full-size image viewer');
       var big = document.createElement('img');
       big.src = img.dataset.full || img.currentSrc;
       big.alt = img.alt;
-      ov.appendChild(big);
+      var item = img.closest('.cred-item');
+      var description = item && item.querySelector('.d');
+      if(description){
+        var figure = document.createElement('figure');
+        figure.className = 'img-lightbox-figure';
+        var caption = document.createElement('figcaption');
+        caption.className = 'img-lightbox-caption';
+        var title = document.createElement('strong');
+        title.textContent = item.querySelector('.t').textContent;
+        var copy = document.createElement('p');
+        copy.textContent = description.textContent;
+        caption.appendChild(title);
+        caption.appendChild(copy);
+        figure.appendChild(big);
+        figure.appendChild(caption);
+        ov.appendChild(figure);
+      } else {
+        ov.appendChild(big);
+      }
       function close(){ ov.remove(); document.removeEventListener('keydown', esc); img.focus(); }
       function esc(e){ if(e.key === 'Escape') close(); }
       ov.addEventListener('click', close);
@@ -2485,6 +2519,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     img.addEventListener('click', open);
     img.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); open(); } });
+    var zoom = img.parentNode.querySelector('.cred-zoom');
+    if(zoom) zoom.addEventListener('click', open);
   });
 })();
 (function(){
